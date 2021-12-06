@@ -13,7 +13,7 @@ namespace vis
             UserDataActions uda = new UserDataActions();
             int Option = -1;
             string s;
-            string test;
+
             
             while (true)
             {

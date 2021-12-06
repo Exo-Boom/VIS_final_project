@@ -267,13 +267,13 @@ namespace vis
                     if (Break)
                     {
                         break;
-                    }    
-                    
-                    Interface.EditUzivatelMenu(dirty);
-                    i = int.Parse(Console.ReadLine());
-                    
-                    
-                    
+                    }
+
+                    try
+                    {
+                        Interface.EditUzivatelMenu(dirty);
+                        i = int.Parse(Console.ReadLine());
+                        
                     switch (i)
                     {
                         case 0:
@@ -358,7 +358,11 @@ namespace vis
                             break;
                         }
                     }
-                
+                    }
+                    catch (FormatException)
+                    {
+                        continue;
+                    }
                 }
                 
                 ug.Update(dirty.Id,dirty.Jmeno,dirty.Prijmeni,dirty.Email,dirty.Psc,dirty.Mesto,dirty.Zeme,dirty.Ulice,dirty.Heslo,dirty.Telefon,dirty.role_id);
