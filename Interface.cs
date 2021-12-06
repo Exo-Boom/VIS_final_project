@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO.Enumeration;
+using vis.Mapper;
+using vis.TableGateway;
 
 namespace vis
 {
@@ -146,9 +148,87 @@ namespace vis
             }
         }
 
-        public static void printObjednavky(int id_u)
+        public static void printObjednavkyUzivatele(Uzivatel u)
         {
+            ObjednavkaMapper og = new ObjednavkaMapper();
+            List<Objednavka> k = og.SelectByUser(u.Id);
+            
+            string s = "";
+            
+            while(true){
+                Console.Clear();
+                
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Logged as "+u.Jmeno+" "+ u.Prijmeni+"\n");
+                Console.ForegroundColor = ConsoleColor.White;
+                
+                Console.WriteLine("ID\t" + "Čas\t" + "Celková cena");
+
+                for (int i = 0; i < k.Count; i++)
+                {
+                    Console.WriteLine(k[i].Id+"\t" + k[i].Cas +"\t" + k[i].Celkova_cena);
+                }
+                
+                Console.WriteLine("\nPro detail objednavky napište její ID");
+                Console.WriteLine("\nPro ukončení napište quit");
+
+                s = Console.ReadLine();
+
+                if (s == "quit")
+                {
+                    return;
+                }
+
+                try
+                {
+                    for (int i = 0; i < k.Count; i++)
+                    {
+                        if (int.Parse(s) == k[i].Id)
+                        {
+                            printJedneObjednavkyUzivatele(k[i]);
+                        }
+                    }
+                    
+
+                }
+                catch (FormatException)
+                {
+                    
+                    continue;
+                }
+            }
+        }
+
+        public static void printJedneObjednavkyUzivatele(Objednavka o)
+        {
+            KnihaTableGateway kgt = new KnihaTableGateway();
+            List<Kniha> k = kgt.SelectAll();
+
+            PolozkaObjednavkyMapper pom = new PolozkaObjednavkyMapper();
+            List<PolozkaObjednavky> l = pom.SelectByObjednavka(o.Id);
+            
             Console.Clear();
+            Console.WriteLine("ID: "+o.Id);
+            Console.WriteLine("Celková cena objednávky: "+o.Celkova_cena);
+            Console.WriteLine("Čas pořízení objednávky: "+o.Cas+"\n");
+            Console.WriteLine("Položky objednávky: \n");
+            Console.WriteLine("Nazev\tISBN\t\tCena\tPočet");
+            for (int i = 0; i < l.Count; i++)
+            {
+                for (int j = 0; j < k.Count; j++)
+                {
+                    if (l[i].id_o == k[j].Id)
+                    {
+                        Console.WriteLine(k[j].Nazev + "\t" + k[j].Isbn + "\t" + l[i].cena + "\t" + l[i].pocet);
+                    }
+                }
+            }
+            
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Pokračujte stisknutím ENTER");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.ReadLine();
+            
         }
         
         

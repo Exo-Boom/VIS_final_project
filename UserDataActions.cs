@@ -167,7 +167,7 @@ namespace vis
                     {
                         break;
                     }
-
+                    
                     if (potvrzeni == "2")
                     {
                         break;
@@ -191,6 +191,7 @@ namespace vis
                     {
                         return false;
                     }
+                    
                 }
                 if (potvrzeni == "2")
                 {
@@ -402,7 +403,9 @@ namespace vis
                 Console.WriteLine(knihy[i].Item1.Nazev +"\t\t"+knihy[i].Item1.Cena+"\t"+ knihy[i].Item2);
             }
             
-            Console.WriteLine("\nPro Pokracovani stisknete klavesu Enter.");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Pokračujte stisknutím ENTER");
+            Console.ForegroundColor = ConsoleColor.White;
             Console.ReadLine();
             
         }

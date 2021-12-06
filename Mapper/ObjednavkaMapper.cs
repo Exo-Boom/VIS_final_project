@@ -123,6 +123,7 @@ namespace vis.Mapper
             return a;
         }
         
+
         public List<Objednavka> SelectByUser(int id)
         {
             SqlConnection conn = new SqlConnection(Database.connectionString);

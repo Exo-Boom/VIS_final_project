@@ -97,7 +97,7 @@ namespace vis
                     }
                     if (Option == 3)
                     {
-                        
+                        Interface.printObjednavkyUzivatele(u);
                     }
                     if (Option == 4)
                     {
