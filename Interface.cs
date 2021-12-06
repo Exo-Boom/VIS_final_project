@@ -19,7 +19,7 @@ namespace vis
             Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(message);
-
+            Console.ForegroundColor = ConsoleColor.White;
             System.Threading.Thread.Sleep(2000);
             Console.Clear();
             
@@ -33,7 +33,7 @@ namespace vis
             Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(message);
-
+            Console.ForegroundColor = ConsoleColor.White;
             System.Threading.Thread.Sleep(2000);
             Console.Clear();
             
@@ -84,7 +84,7 @@ namespace vis
             }
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\n0 - Pro opuštění editace");
-
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
         public void Welcome()
@@ -115,6 +115,7 @@ namespace vis
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Špatně zadaný input, zkuste to prosím znovu.");
+            Console.ForegroundColor = ConsoleColor.White;
             System.Threading.Thread.Sleep(3000);
         }
 
@@ -256,6 +257,7 @@ namespace vis
 
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\n0 - Pro opuštění editace");
+            Console.ForegroundColor = ConsoleColor.White;
         }
         
     }

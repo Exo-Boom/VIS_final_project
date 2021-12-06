@@ -430,7 +430,7 @@ namespace vis
 
                     try
                     {
-                        Interface.MenuEditaceKniha(ref u);
+                        Interface.MenuEditaceKniha(ref dirty);
                         i = int.Parse(Console.ReadLine());
                         
                     switch (i)
@@ -513,7 +513,13 @@ namespace vis
             {
                 Interface.printKnihy(k);
                 Console.WriteLine("\nNapište ID knihy, kterou chcete upravit");
+                Console.WriteLine("\nNapište quit pro odchod z výběru");
                 s = Console.ReadLine();
+
+                if (s == "quit")
+                {
+                    return;
+                }
                 
                 try
                 {
