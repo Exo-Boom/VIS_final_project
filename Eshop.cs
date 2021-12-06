@@ -10,7 +10,6 @@ namespace vis
         {
             Uzivatel u = new Uzivatel("Anonymous","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous",3);
             Interface I = new Interface();
-            DataFunctions df = new DataFunctions();
             UserDataActions uda = new UserDataActions();
             int Option = -1;
             string s;
@@ -35,7 +34,7 @@ namespace vis
 
                     if (Option == 0)
                     {
-                        if (df.Login(ref u))
+                        if (uda.Login(ref u))
                         {
                             I.LoginSuccess();
                             break;
@@ -45,7 +44,7 @@ namespace vis
 
                     if (Option == 1)
                     {
-                        if (df.Register(ref u))
+                        if (uda.Register(ref u))
                         {
                             I.RegisterSuccess();
                         }
@@ -112,7 +111,19 @@ namespace vis
                         I.Logout(ref u);
                         break;
                     }
-
+                    if (Option == 6)
+                    {
+                        
+                    }
+                    if (Option == 7)
+                    {
+                        
+                        
+                    }                    
+                    if (Option == 8)
+                    {
+                        uda.adminKnihy(u);
+                    }
                 }
             }
             

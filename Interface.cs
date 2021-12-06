@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO.Enumeration;
+using vis.Gateway;
 using vis.Mapper;
 using vis.TableGateway;
 
@@ -81,7 +83,7 @@ namespace vis
                Console.Write("10"); Console.WriteLine(" - Pro změnu role"); 
             }
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("0 - Pro opuštění editace");
+            Console.WriteLine("\n0 - Pro opuštění editace");
 
         }
 
@@ -128,14 +130,15 @@ namespace vis
             Console.Write("2"); Console.WriteLine(" - Pro vytvoření objednávky");
             Console.Write("3"); Console.WriteLine(" - Pro zobrazení objednávek");
             Console.Write("4"); Console.WriteLine(" - Pro editaci profilu");
-            Console.Write("5"); Console.WriteLine(" - Pro odhlášení");
             if (a.role_id == 1)
             {
                 Console.Write("6"); Console.WriteLine(" - Pro zobrazení všech uživatelů");
                 Console.Write("7"); Console.WriteLine(" - Pro zobrazení všech objednávek");
-                Console.Write("7"); Console.WriteLine(" - Pro zobrazení všech knih");
+                Console.Write("8"); Console.WriteLine(" - Pro zobrazení všech knih");
             }
-
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write("\n5"); Console.WriteLine(" - Pro odhlášení");
+            Console.ForegroundColor = ConsoleColor.White;
         }
         
         public static void printKnihy(List<Kniha> k)
@@ -166,7 +169,7 @@ namespace vis
 
                 for (int i = 0; i < k.Count; i++)
                 {
-                    Console.WriteLine(k[i].Id+"\t" + k[i].Cas +"\t" + k[i].Celkova_cena);
+                    Console.WriteLine(k[i].Id+"\t" + k[i].Cas +"\t" + k[i].Celkova_cena+" kč");
                 }
                 
                 Console.WriteLine("\nPro detail objednavky napište její ID");
@@ -209,16 +212,16 @@ namespace vis
             
             Console.Clear();
             Console.WriteLine("ID: "+o.Id);
-            Console.WriteLine("Celková cena objednávky: "+o.Celkova_cena);
+            Console.WriteLine("Celková cena objednávky: "+o.Celkova_cena+" kč");
             Console.WriteLine("Čas pořízení objednávky: "+o.Cas+"\n");
             Console.WriteLine("Položky objednávky: \n");
             Console.WriteLine("Nazev\tISBN\t\tCena\tPočet");
-
+           
             for (int i = 0; i < l.Count; i++)
             {
                 for (int j = 0; j < k.Count; j++)
                 {
-                    if (l[i].id_o == k[j].Id)
+                    if (l[i].Id_k == k[j].Id)
                     {
                         Console.WriteLine(k[j].Nazev + "\t" + k[j].Isbn + "\t" + l[i].cena + "\t" + l[i].pocet);
                     }
@@ -231,7 +234,29 @@ namespace vis
             Console.ReadLine();
             
         }
-        
+
+        public static void MenuEditaceKniha(ref Kniha k)
+        {
+            
+            Console.WriteLine("Editovaná kniha: \n");
+            
+            Console.WriteLine("Nazev: " + k.Nazev);
+            Console.WriteLine("ISBN: " + k.Isbn);
+            Console.WriteLine("Cena: " + k.Cena+" kč");
+            Console.WriteLine("Počet na skladě: " + k.Pocet);
+            Console.WriteLine("Popis knihy: " + k.Popis);
+            
+            Console.WriteLine("Vyberte možnost co chcete upravit: ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("1"); Console.WriteLine(" - Pro změnu názvu");
+            Console.Write("2"); Console.WriteLine(" - Pro změnu ISBN");
+            Console.Write("3"); Console.WriteLine(" - Pro změnu ceny");
+            Console.Write("4"); Console.WriteLine(" - Pro dopnění zboží");
+            Console.Write("5"); Console.WriteLine(" - Pro změnu popisu knihy");
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\n0 - Pro opuštění editace");
+        }
         
     }
 }

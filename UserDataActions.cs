@@ -410,6 +410,315 @@ namespace vis
             
         }
         
+        public bool EditKniha(Kniha u)
+        {
+            
+            Kniha dirty;
+            string s = "";
+            int i=0;
+            bool Break = false;
+            KnihaGateway kg = new KnihaGateway();
+            KnihaMapper km = new KnihaMapper();
+            try
+            {
+                dirty = km.SelectById(u.Id);
+                while(true){
+                    if (Break)
+                    {
+                        break;
+                    }
+
+                    try
+                    {
+                        Interface.MenuEditaceKniha(ref u);
+                        i = int.Parse(Console.ReadLine());
+                        
+                    switch (i)
+                    {
+                        case 0:
+                        {
+                            Break = true;
+                            continue;
+                        }
+                        case 1:
+                        {
+                            Console.WriteLine("Zadej nový název: ");
+                            s = Console.ReadLine();
+                            dirty.Nazev = s;
+                            break;
+                        }
+                            
+                        case 2:
+                        {   
+                            Console.WriteLine("Zadej nové ISBN: ");
+                            s = Console.ReadLine();
+                            dirty.Isbn = s;
+                            break;
+                        }
+                        case 3:
+                        {
+                            Console.WriteLine("Zadej novou cenu: ");
+                            dirty.Cena = int.Parse(Console.ReadLine());
+                            break;
+                        }
+                        case 4:
+                        {
+                            Console.WriteLine("Zadej nový počet: ");
+                            dirty.Pocet = int.Parse(Console.ReadLine());
+                            break;
+                        }
+                        case 5:
+                        {
+                            Console.WriteLine("Zadej nový popis: ");
+                            s = Console.ReadLine();
+                            dirty.Popis = s;
+                            break;
+                        }
+                    }
+                    }
+                    catch (FormatException)
+                    {
+                        continue;
+                    }
+                }
+
+                kg.Nazev = dirty.Nazev;
+                kg.cena = dirty.Cena;
+                kg.Popis = dirty.Popis;
+                kg.pocet = dirty.Pocet;
+                kg.Id = dirty.Id;
+                kg.ISBN = dirty.Isbn;
+                
+                kg.Update();
+                
+                return true;
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+
+            
+        }
+        
+        
+        public void adminKnihy(Uzivatel u)
+        {
+            KnihaTableGateway ktg = new KnihaTableGateway();
+            List<Kniha> k = ktg.SelectAll();
+            string s = "";
+            
+            while (true)
+            {
+                Interface.printKnihy(k);
+                Console.WriteLine("\nNapište ID knihy, kterou chcete upravit");
+                s = Console.ReadLine();
+                
+                try
+                {
+                    for (int i = 0; i < k.Count; i++)
+                    {
+                        if (int.Parse(s) == k[i].Id)
+                        {
+                            EditKniha(k[i]);
+                        }
+                    }
+                    
+
+                }
+                catch (FormatException)
+                {
+                    
+                    continue;
+                }
+                
+                
+            }
+            
+        }
+        
+        public bool IsValidEmail(string email)
+        {
+            try {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch {
+                return false;
+            }
+        }
+
+       public bool Login(ref Uzivatel a)
+       {
+           string email, password;
+
+           UserActions ua = new UserActions();
+           do
+           {
+               Console.Clear();
+               Console.WriteLine("Prosím zadejte email: ");
+               email = Console.ReadLine();
+               
+           } while (IsValidEmail(email) != true);
+            
+           Console.Clear();
+           Console.WriteLine("Email: "+ email);
+           Console.WriteLine("Prosím zadejte heslo: ");
+           password = Console.ReadLine();
+           
+            a = ua.Login(email,password);
+            
+           if (a != null)
+           {
+               return true;
+           }
+
+           return false;
+       }
+        
+       public bool Register(ref Uzivatel a)
+       {
+           string jmeno;
+           string prijmeni;
+           string email;
+           string psc;
+           string mesto;
+           string zeme;
+           string ulice;
+           string heslo;
+           string telefon;
+           string potvrzeni; 
+           
+           UserActions ua = new UserActions();
+           bool ok = false;
+           
+           
+           do
+           {   Console.Clear();
+               Console.WriteLine("Pro ukončení napiše: quit");
+               Console.WriteLine("Prosím zadejte jméno: ");
+               jmeno = Console.ReadLine();
+               if (jmeno == "quit") return false;
+               Console.Clear();
+               Console.WriteLine("Jmeno: "+jmeno +"\t\t\tPro ukončení napiše: quit"+ "\n");
+               Console.WriteLine("Prosím zadejte Prijmeni: ");
+               prijmeni = Console.ReadLine();
+               if (prijmeni == "quit") return false;
+               do
+               {
+                   Console.Clear();
+                   Console.WriteLine("Jmeno: "+jmeno+"\t\t\tPro ukončení napiše: quit");
+                   Console.WriteLine("Prijmeni: "+prijmeni+ "\n");
+                   Console.WriteLine("Prosím zadejte email: ");
+                   email = Console.ReadLine();
+                       
+               } while (IsValidEmail(email) != true);
+               
+               Console.Clear();
+               Console.WriteLine("Jmeno: "+jmeno+"\t\t\tPro ukončení napiše: quit");
+               Console.WriteLine("Prijmeni: "+prijmeni);
+               Console.WriteLine("Email: "+email+ "\n");
+               Console.WriteLine("Prosím zadejte PSČ: ");
+               psc = Console.ReadLine();
+               if (psc == "quit") return false;
+               Console.Clear();
+               Console.WriteLine("Jmeno: "+jmeno+"\t\t\tPro ukončení napiše: quit");
+               Console.WriteLine("Prijmeni: "+prijmeni);
+               Console.WriteLine("Email: "+email);
+               Console.WriteLine("PSČ: "+psc+ "\n");
+               Console.WriteLine("Prosím zadejte město: ");
+               mesto = Console.ReadLine();
+               if (mesto == "quit") return false;
+               Console.Clear();
+               Console.WriteLine("Jmeno: "+jmeno+"\t\t\tPro ukončení napiše: quit");
+               Console.WriteLine("Prijmeni: "+prijmeni);
+               Console.WriteLine("Email: "+email);
+               Console.WriteLine("PSČ: "+psc);
+               Console.WriteLine("Město: "+mesto+ "\n");
+               Console.WriteLine("Prosím zadejte zemi: ");
+               zeme = Console.ReadLine();
+               if (zeme == "quit") return false;
+               Console.Clear();
+               Console.WriteLine("Jmeno: "+jmeno+"\t\t\tPro ukončení napiše: quit");
+               Console.WriteLine("Prijmeni: "+prijmeni);
+               Console.WriteLine("Email: "+email);
+               Console.WriteLine("PSČ: "+psc);
+               Console.WriteLine("Město: "+mesto);
+               Console.WriteLine("Země: "+zeme+ "\n");
+               Console.WriteLine("Prosím zadejte ulici: ");
+               ulice = Console.ReadLine();
+               if (ulice == "quit") return false;
+               Console.Clear();
+               Console.WriteLine("Jmeno: "+jmeno+"\t\t\tPro ukončení napiše: quit");
+               Console.WriteLine("Prijmeni: "+prijmeni);
+               Console.WriteLine("Email: "+email);
+               Console.WriteLine("PSČ: "+psc);
+               Console.WriteLine("Město: "+mesto);
+               Console.WriteLine("Země: "+zeme);
+               Console.WriteLine("Ulice: "+ulice+ "\n");
+               Console.WriteLine("Prosím zadejte telefon: ");
+               telefon = Console.ReadLine();
+               if (telefon == "quit") return false;
+               do
+               {
+                   Console.Clear();
+                   Console.WriteLine("Jmeno: " + jmeno);
+                   Console.WriteLine("Prijmeni: " + prijmeni);
+                   Console.WriteLine("Email: " + email);
+                   Console.WriteLine("PSČ: " + psc);
+                   Console.WriteLine("Město: " + mesto);
+                   Console.WriteLine("Země: " + zeme);
+                   Console.WriteLine("Ulice: " + ulice);
+                   Console.WriteLine("Telefon: " + telefon + "\n");
+                   Console.WriteLine("Prosím zadejte heslo: ");
+                   heslo = Console.ReadLine();
+                   Console.WriteLine("Prosím zadejte heslo znovu pro potvrzení: ");
+                   potvrzeni = Console.ReadLine();
+                   if (heslo != potvrzeni)
+                   {
+                       Console.WriteLine("Hesla se neshodují. Zkuste to znovu...");
+                   }
+                   System.Threading.Thread.Sleep(3000);
+               } while (heslo != potvrzeni);
+               do
+               {                     
+                   Console.Clear();
+                   Console.WriteLine("Jmeno: " + jmeno);
+                   Console.WriteLine("Prijmeni: " + prijmeni);
+                   Console.WriteLine("Email: " + email);
+                   Console.WriteLine("PSČ: " + psc);
+                   Console.WriteLine("Město: " + mesto);
+                   Console.WriteLine("Země: " + zeme);
+                   Console.WriteLine("Ulice: " + ulice);
+                   Console.WriteLine("Telefon: " + telefon + "\n");
+         
+                   Console.WriteLine("Jsou všechny údaje správně? y/n" );
+                   potvrzeni = Console.ReadLine();
+
+                   if (potvrzeni == "y")
+                   {
+                       ok = true;
+                       break;
+                   }
+
+                   if (potvrzeni == "n")
+                   {
+                       break;
+                   }
+               } while (true);
+
+           } while (ok != true);
+           
+           ok = ua.Register(jmeno,prijmeni,email,psc,mesto,zeme,ulice,heslo,telefon);
+            
+           if (ok == true)
+           {
+               return true;
+           }
+
+           return false;
+       }
         
     }
     
