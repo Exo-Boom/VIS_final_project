@@ -22,6 +22,7 @@ namespace vis.Mapper
             
             while (data.Read())
             {
+                
                 PolozkaObjednavky a = new PolozkaObjednavky(data.GetInt32(0),data.GetInt32(1), data.GetInt32(2), data.GetInt32(3));
                 list.Add(a);
 

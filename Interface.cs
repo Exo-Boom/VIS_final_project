@@ -162,7 +162,7 @@ namespace vis
                 Console.WriteLine("Logged as "+u.Jmeno+" "+ u.Prijmeni+"\n");
                 Console.ForegroundColor = ConsoleColor.White;
                 
-                Console.WriteLine("ID\t" + "Čas\t" + "Celková cena");
+                Console.WriteLine("ID\t\t" + "Čas\t\t" + "Celková cena");
 
                 for (int i = 0; i < k.Count; i++)
                 {
@@ -217,6 +217,7 @@ namespace vis
             {
                 for (int j = 0; j < k.Count; j++)
                 {
+                    Console.WriteLine(i+"=="+j);
                     if (l[i].id_o == k[j].Id)
                     {
                         Console.WriteLine(k[j].Nazev + "\t" + k[j].Isbn + "\t" + l[i].cena + "\t" + l[i].pocet);
@@ -225,7 +226,7 @@ namespace vis
             }
             
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Pokračujte stisknutím ENTER");
+            Console.WriteLine("\nPokračujte stisknutím ENTER");
             Console.ForegroundColor = ConsoleColor.White;
             Console.ReadLine();
             
