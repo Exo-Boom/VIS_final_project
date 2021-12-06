@@ -218,7 +218,7 @@ namespace vis
             {
                 for (int j = 0; j < k.Count; j++)
                 {
-                    Console.WriteLine(i+"=="+j);
+                    Console.WriteLine(l[i].id_o+"=="+k[j].Id);
                     if (l[i].id_o == k[j].Id)
                     {
                         Console.WriteLine(k[j].Nazev + "\t" + k[j].Isbn + "\t" + l[i].cena + "\t" + l[i].pocet);
