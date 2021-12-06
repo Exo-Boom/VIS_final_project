@@ -513,7 +513,9 @@ namespace vis
             {
                 Interface.printKnihy(k);
                 Console.WriteLine("\nNapište ID knihy, kterou chcete upravit");
-                Console.WriteLine("\nNapište quit pro odchod z výběru");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nNebo napište quit pro odchod z výběru");
+                Console.ForegroundColor = ConsoleColor.White;
                 s = Console.ReadLine();
 
                 if (s == "quit")

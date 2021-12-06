@@ -241,13 +241,13 @@ namespace vis
             
             Console.WriteLine("Editovaná kniha: \n");
             
-            Console.WriteLine("Nazev: " + k.Nazev);
+            Console.WriteLine("Název: " + k.Nazev);
             Console.WriteLine("ISBN: " + k.Isbn);
             Console.WriteLine("Cena: " + k.Cena+" kč");
             Console.WriteLine("Počet na skladě: " + k.Pocet);
             Console.WriteLine("Popis knihy: " + k.Popis);
             
-            Console.WriteLine("Vyberte možnost co chcete upravit: ");
+            Console.WriteLine("Vyberte možnost co chcete upravit: \n");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("1"); Console.WriteLine(" - Pro změnu názvu");
             Console.Write("2"); Console.WriteLine(" - Pro změnu ISBN");
