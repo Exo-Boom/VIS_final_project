@@ -213,12 +213,11 @@ namespace vis
             Console.WriteLine("Čas pořízení objednávky: "+o.Cas+"\n");
             Console.WriteLine("Položky objednávky: \n");
             Console.WriteLine("Nazev\tISBN\t\tCena\tPočet");
-            Console.WriteLine(l.Count + " "+ k.Count);
+
             for (int i = 0; i < l.Count; i++)
             {
                 for (int j = 0; j < k.Count; j++)
                 {
-                    Console.WriteLine(l[i].id_o+"=="+k[j].Id);
                     if (l[i].id_o == k[j].Id)
                     {
                         Console.WriteLine(k[j].Nazev + "\t" + k[j].Isbn + "\t" + l[i].cena + "\t" + l[i].pocet);
