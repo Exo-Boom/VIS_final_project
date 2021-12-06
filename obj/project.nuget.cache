@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lYHWpoX8esR9Gg40wXLdaU8rsHv8q0GTkBmicv1yNnxBfJ/Y30zZBo94yLvzgnovoAOnB9LXhcVu5V9/8VRu5g==",
+  "dgSpecHash": "/muwwpvQVreVxlRDSo/QXYUSVKb8tC/B+KXRhlqW28PmY9NSb+97I36836zANn7Ry8rvpbOHE5TUPjK3GQRMlg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Tomáš Gergišák\\Desktop\\vis-projekt\\vis\\vis.csproj",
+  "projectFilePath": "C:\\Users\\Tomáš Gergišák\\Desktop\\škola\\uass\\emaily\\Visko\\vis.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tomáš Gergišák\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Tomáš Gergišák\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
