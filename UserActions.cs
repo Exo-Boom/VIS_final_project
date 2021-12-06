@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Text;
 using vis.Gateway;
+using vis.Mapper;
 
 namespace vis
 {
@@ -11,11 +12,11 @@ namespace vis
 
         public Uzivatel Login(string email, string heslo)
         {
-            UzivatelGateway ug = new UzivatelGateway();
+            UzivatelMapper um = new UzivatelMapper();
             
             try
             {
-                Uzivatel logged = ug.SelectByEmail(email);
+                Uzivatel logged = um.SelectByEmail(email);
                 
                 if (logged.Heslo == hash(heslo))
                 {
@@ -39,7 +40,17 @@ namespace vis
 
             try
             {
-                ug.Insert(jmeno, prijmeni, email, psc, mesto, zeme, ulice, heslo, telefon, role);
+                ug.jmeno = jmeno;
+                ug.prijmeni = prijmeni;
+                ug.email = email;
+                ug.psc = psc;
+                ug.mesto = mesto;
+                ug.zeme = zeme;
+                ug.ulice = ulice;
+                ug.heslo = heslo;
+                ug.telefon = telefon;
+                ug.roleId = role;
+                ug.Insert();
             }
             catch (SqlException e)
             {

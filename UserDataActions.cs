@@ -4,6 +4,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text.RegularExpressions;
 using vis.Gateway;
+using vis.Mapper;
+using vis.TableGateway;
 
 namespace vis
 {
@@ -12,7 +14,7 @@ namespace vis
 
         public bool vytvorObjednavku(Uzivatel u)
         {
-            ObjednavkaGateway og = new ObjednavkaGateway();
+            ObjednavkaMapper om = new ObjednavkaMapper();
             List<(Kniha,int)> knihy = new List<(Kniha,int)>();
             int idk,pocet;
             string potvrzeni;
@@ -203,7 +205,7 @@ namespace vis
             {
                 if (list.Any())
                 {
-                    status = og.Insert(DateTime.Now, u.Id, knihy);
+                    status = om.Insert(DateTime.Now, u.Id, knihy);
                 }
                 else
                 { 
@@ -236,7 +238,7 @@ namespace vis
         
         public List<Kniha> getKnihy()
         {
-            KnihaGateway kg = new KnihaGateway();
+            KnihaTableGateway kg = new KnihaTableGateway();
             List<Kniha> k = new List<Kniha>();
             try
             {
@@ -259,10 +261,10 @@ namespace vis
             int i=0;
             bool Break = false;
             
-            UzivatelGateway ug = new UzivatelGateway();
+            UzivatelMapper um = new UzivatelMapper();
             try
             {
-                dirty = ug.SelectById(u.Id);
+                dirty = um.SelectById(u.Id);
                 while(true){
                     if (Break)
                     {
@@ -327,6 +329,7 @@ namespace vis
                         case 7:
                         {
                             Console.WriteLine("Zadej nové heslo: ");
+                            s = Console.ReadLine();
                             s = UserActions.hash(s);
                             dirty.Heslo = s; 
                             break;
@@ -364,11 +367,11 @@ namespace vis
                         continue;
                     }
                 }
-                
-                ug.Update(dirty.Id,dirty.Jmeno,dirty.Prijmeni,dirty.Email,dirty.Psc,dirty.Mesto,dirty.Zeme,dirty.Ulice,dirty.Heslo,dirty.Telefon,dirty.role_id);
+
+
+                um.Update(dirty.Id,dirty.Jmeno,dirty.Prijmeni,dirty.Email,dirty.Psc,dirty.Mesto,dirty.Zeme,dirty.Ulice,dirty.Heslo,dirty.Telefon,dirty.role_id);
                 
                 return true;
-
             }
             catch (SqlException e)
             {
@@ -381,7 +384,7 @@ namespace vis
 
         public static void PrehledObjednavky(List<(Kniha,int)> knihy, int id_obj)
         {
-            ObjednavkaGateway o = new ObjednavkaGateway();
+            ObjednavkaMapper o = new ObjednavkaMapper();
             
             Objednavka a = o.SelectById(id_obj);
             

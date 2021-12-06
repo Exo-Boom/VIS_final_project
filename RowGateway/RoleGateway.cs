@@ -4,9 +4,13 @@ using System.Data.SqlClient;
 
 namespace vis.Gateway
 {
-    public class RoleGateway
-    {
-        public int Insert(string nazev, string popis)
+
+    public class RoleGateway: GatewayInterface
+    {   
+        public int Id{ get; set;}
+        public string nazev{ get; set;}
+        public string popis{ get; set;}
+        public void Insert()
         {
             SqlConnection conn = new SqlConnection(Database.connectionString);
             conn.Open();
@@ -21,14 +25,13 @@ namespace vis.Gateway
             com.Prepare();
 
 
-            int new_id = (int) com.ExecuteScalar();
+            Id = (int) com.ExecuteScalar();
 
             conn.Close();
-
-            return new_id;
+            
         }
         
-        public void Update(int id, string nazev, string popis)
+        public void Update()
         {
             SqlConnection conn = new SqlConnection(Database.connectionString);
             conn.Open();
@@ -37,7 +40,7 @@ namespace vis.Gateway
                 "UPDATE Role set nazev=@nazev,popis = @popis WHERE id_r = @id_r";
             SqlCommand com = new SqlCommand(dotaz, conn);
 
-            com.Parameters.Add(new SqlParameter("@id_r", SqlDbType.Int)).Value = id;
+            com.Parameters.Add(new SqlParameter("@id_r", SqlDbType.Int)).Value = Id;
             com.Parameters.Add(new SqlParameter("@nazev", SqlDbType.VarChar, 30)).Value = nazev;
             com.Parameters.Add(new SqlParameter("@popis", SqlDbType.VarChar, 2000)).Value = popis;
 
@@ -48,7 +51,7 @@ namespace vis.Gateway
             conn.Close();
         }
 
-        public void Delete(int id)
+        public void Delete()
         {
             SqlConnection conn = new SqlConnection(Database.connectionString);
             conn.Open();
@@ -56,7 +59,7 @@ namespace vis.Gateway
             var dotaz = "DELETE FROM Role WHERE id_r = @id_r";
             SqlCommand com = new SqlCommand(dotaz, conn);
 
-            com.Parameters.Add(new SqlParameter("@id_r", SqlDbType.Int)).Value = id;
+            com.Parameters.Add(new SqlParameter("@id_r", SqlDbType.Int)).Value = Id;
 
             com.Prepare();
 
@@ -64,48 +67,26 @@ namespace vis.Gateway
 
             conn.Close();
         }
-
-
-        public List<Role> SelectAll()
-        {
-            SqlConnection conn = new SqlConnection(Database.connectionString);
-            conn.Open();
-
-            var dotaz = "SELECT * FROM Role";
-            SqlCommand com = new SqlCommand(dotaz, conn);
-
-            SqlDataReader data = com.ExecuteReader();
-
-            List<Role> list = new List<Role>();
-
-
-            while (data.Read())
-            {
-                Role a = new Role(data.GetInt32(0), data.GetString(1), data.GetString(2));
-                list.Add(a);
-
-            }
-
-            conn.Close();
-
-            return list;
-        }
-
-        public Role SelectById(int id)
+        
+        public void SelectById()
         {
             SqlConnection conn = new SqlConnection(Database.connectionString);
             conn.Open();
 
             var dotaz = "SELECT * FROM Role WHERE id_r = @id";
             SqlCommand com = new SqlCommand(dotaz, conn);
-            com.Parameters.Add(new SqlParameter("@id", SqlDbType.Int)).Value = id;
+            com.Parameters.Add(new SqlParameter("@id", SqlDbType.Int)).Value = Id;
             SqlDataReader data = com.ExecuteReader();
             data.Read();
-            Role a = new Role(data.GetInt32(0), data.GetString(1), data.GetString(2));
+            
+            Id = data.GetInt32(0);
+            nazev = data.GetString(1);
+            popis = data.GetString(2);
+            
 
             conn.Close();
 
-            return a;
+           
         }
         
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using vis.Gateway;
+using vis.TableGateway;
 
 namespace vis
 {
@@ -71,7 +72,7 @@ namespace vis
 
                     if (Option == 1)
                     {
-                        KnihaGateway kg = new KnihaGateway();
+                        KnihaTableGateway kg = new KnihaTableGateway();
 
                         Interface.printKnihy(kg.SelectAll());
                         Console.ForegroundColor = ConsoleColor.Red;

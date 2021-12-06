@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using vis.Gateway;
+using vis.TableGateway;
 
-namespace vis.Gateway
+namespace vis.Mapper
 {
-    public class ObjednavkaGateway
+    public class ObjednavkaMapper
     {
         public int Insert(DateTime datum, int id_u, List<(Kniha k,int i)> k)
         {
@@ -30,6 +32,9 @@ namespace vis.Gateway
             int new_id = (int) com.ExecuteScalar();
             
             conn.Close();
+            
+            
+            
             KnihaGateway kg = new KnihaGateway();
             
             
@@ -38,18 +43,22 @@ namespace vis.Gateway
             {
                 for (int i = 0; i < k.Count; i++)
                 {
-                    p.Insert(k[i].Item1.Id,new_id,k[i].Item2,k[i].Item1.Cena);
-                    kg.Update(k[i].Item1.Id,k[i].Item1.Nazev,k[i].Item1.Isbn,k[i].Item1.Popis,k[i].Item1.Cena,k[i].Item1.Pocet - k[i].Item2);
+                    p.id_o = new_id;
+                    p.Id = k[i].Item1.Id;
+                    p.pocet = k[i].Item2;
+                    p.cena = k[i].Item1.Cena;
+                    p.Insert();
+                    kg.Id = k[i].Item1.Id;
+                    kg.Nazev = k[i].Item1.Nazev;
+                    kg.ISBN = k[i].Item1.Isbn;
+                    kg.Popis = k[i].Item1.Popis;
+                    kg.cena = k[i].Item1.Cena;
+                    kg.pocet = k[i].Item1.Pocet - k[i].Item2;
+                    kg.Update();
                 }
             }
-            catch (SqlException e)
+            catch (SqlException)
             {
-                p.DeleteWholeObjednavka(new_id);
-                Console.WriteLine("Došlo k chybě: \n"+ e);
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Pokračujte stisknutím ENTER");
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.ReadLine();
                 return -1;
             }
 
@@ -92,31 +101,6 @@ namespace vis.Gateway
             com.ExecuteNonQuery();
             
             conn.Close();
-        }
-        
-        public List<Objednavka> SelectAll()
-        {
-            SqlConnection conn = new SqlConnection(Database.connectionString);
-            conn.Open();
-
-            var dotaz = "SELECT * FROM Objednavka";
-            SqlCommand com = new SqlCommand(dotaz, conn);
-
-            SqlDataReader data = com.ExecuteReader();
-
-            List<Objednavka> list = new List<Objednavka>();
-
-
-            while (data.Read())
-            {
-                Objednavka a = new Objednavka(data.GetInt32(0),data.GetInt32(1), data.GetDateTime(2), data.GetInt32(3));
-                list.Add(a);
-
-            }
-
-            conn.Close();
-
-            return list;
         }
 
         public Objednavka SelectById(int id)

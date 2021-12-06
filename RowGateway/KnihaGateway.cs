@@ -4,9 +4,16 @@ using System.Data.SqlClient;
 
 namespace vis.Gateway
 {
-    public class KnihaGateway
+    public class KnihaGateway : GatewayInterface
     {
-        public int Insert(string Nazev, string ISBN, string Popis, int cena, int pocet)
+        public int Id { get; set; }
+        public string Nazev{ get; set; }
+        public string ISBN{ get; set; }
+        public string Popis{ get; set; }
+        public int cena{ get; set; }
+        public int pocet{ get; set; }
+        
+        public void Insert()
         {
             SqlConnection conn = new SqlConnection(Database.connectionString);
             conn.Open();
@@ -23,13 +30,12 @@ namespace vis.Gateway
             com.Prepare();
             
             
-            int new_id = (int) com.ExecuteScalar();
+            Id = (int) com.ExecuteScalar();
             
             conn.Close();
-
-            return new_id;
+            
         }
-        public void Update(int id,string Nazev, string ISBN, string Popis, float cena, int pocet)
+        public void Update()
         {
             SqlConnection conn = new SqlConnection(Database.connectionString);
             conn.Open();
@@ -37,7 +43,7 @@ namespace vis.Gateway
             var dotaz = "UPDATE Kniha set Nazev=@Nazev,ISBN = @ISBN,Popis = @Popis,cena = @cena,pocet = @pocet WHERE id_k = @id_k"; 
             SqlCommand com = new SqlCommand(dotaz,conn);
             
-            com.Parameters.Add(new SqlParameter("@id_k", SqlDbType.Int)).Value = id;
+            com.Parameters.Add(new SqlParameter("@id_k", SqlDbType.Int)).Value = Id;
             com.Parameters.Add(new SqlParameter("@Nazev", SqlDbType.VarChar, 50)).Value = Nazev;
             com.Parameters.Add(new SqlParameter("@ISBN", SqlDbType.VarChar, 50)).Value = ISBN;
             com.Parameters.Add(new SqlParameter("@Popis", SqlDbType.Text, 50)).Value = Popis;
@@ -49,7 +55,7 @@ namespace vis.Gateway
             
             conn.Close();
         }
-        public void Delete(int id)
+        public void Delete()
         {
             SqlConnection conn = new SqlConnection(Database.connectionString);
             conn.Open();
@@ -57,7 +63,7 @@ namespace vis.Gateway
             var dotaz = "DELETE FROM Kniha WHERE id_k = @id_k"; 
             SqlCommand com = new SqlCommand(dotaz,conn);
             
-            com.Parameters.Add(new SqlParameter("@id_k", SqlDbType.Int)).Value = id;
+            com.Parameters.Add(new SqlParameter("@id_k", SqlDbType.Int)).Value = Id;
 
             com.Prepare();
             
@@ -65,50 +71,29 @@ namespace vis.Gateway
             
             conn.Close();
         }
-
-
-        public List<Kniha> SelectAll()
-        {
-            SqlConnection conn = new SqlConnection(Database.connectionString);
-            conn.Open();
-            
-            var dotaz = "SELECT * FROM Kniha"; 
-            SqlCommand com = new SqlCommand(dotaz,conn);
-
-            SqlDataReader data = com.ExecuteReader();
-            
-            List<Kniha> list = new List<Kniha>();
-            
-            
-            while (data.Read())
-            {
-                Kniha a = new Kniha(data.GetInt32(0),data.GetString(1),data.GetString(2),data.GetString(3)
-                    ,data.GetInt32(4),data.GetInt32(5));
-                list.Add(a);
-                
-            }
-            conn.Close();
-
-            return list;
-        }
         
-        public Kniha SelectById(int id)
+        public void SelectById()
         {
             SqlConnection conn = new SqlConnection(Database.connectionString);
             conn.Open();
             
             var dotaz = "SELECT * FROM Kniha WHERE id_k = @id"; 
             SqlCommand com = new SqlCommand(dotaz,conn);
-            com.Parameters.Add(new SqlParameter("@id", SqlDbType.Int)).Value = id;
+            com.Parameters.Add(new SqlParameter("@id", SqlDbType.Int)).Value = Id;
             SqlDataReader data = com.ExecuteReader();
             data.Read();
-            Kniha a = new Kniha(data.GetInt32(0),data.GetString(1),data.GetString(2),data.GetString(3)
-            ,data.GetInt32(4),data.GetInt32(5));
 
+            Id = data.GetInt32(0);
+            Nazev = data.GetString(1);
+            ISBN = data.GetString(2);
+            Popis = data.GetString(3);
+            cena = data.GetInt32(4);
+            pocet = data.GetInt32(5);
+            
             conn.Close();
 
-            return a;
-        }        
+            
+        }
     
     }
 }
