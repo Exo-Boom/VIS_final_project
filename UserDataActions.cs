@@ -361,6 +361,7 @@ namespace vis
                                     if (Int32.Parse(s)==1 || Int32.Parse(s) == 2)
                                     {
                                         dirty.role_id = Int32.Parse(s);
+                                        break;
                                     }
                                     
                                     
