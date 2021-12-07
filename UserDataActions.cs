@@ -119,7 +119,7 @@ namespace vis
             UzivatelGateway Uzi = new UzivatelGateway();
             UzivatelTableGateway utg = new UzivatelTableGateway();
             List<Uzivatel> k = utg.SelectAll();
-            
+            string p = "";
             RoleGateway role = new RoleGateway();
             
             while (true)
@@ -167,6 +167,23 @@ namespace vis
                     {
                         if (int.Parse(s) == k[i].Id)
                         {
+                            while (true)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("\nOpravdu chcete odstranit uživatele a všechny jeho objednávky? (yes/no)");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                p = Console.ReadLine();
+                                if ("yes" == p)
+                                {
+                                    break;
+                                }
+
+                                if ("no" == p)
+                                {
+                                    return;
+                                }
+                                
+                            }
                             Uzi.Id = k[i].Id;
                             Uzi.Delete();
 

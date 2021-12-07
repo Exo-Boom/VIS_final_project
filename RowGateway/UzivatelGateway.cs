@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using vis.Mapper;
 
 namespace vis.Gateway
 {
@@ -73,6 +74,17 @@ namespace vis.Gateway
         
         public void Delete()
         {
+            ObjednavkaMapper om = new ObjednavkaMapper();
+
+            om.SelectByUser(Id);
+            
+            List<Objednavka> list = new List<Objednavka>();
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                om.Delete(list[i].Id);
+            }
+            
             SqlConnection conn = new SqlConnection(Database.connectionString);
             conn.Open();
             
