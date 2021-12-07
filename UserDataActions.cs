@@ -507,7 +507,8 @@ namespace vis
            ug.Adr.Ulice=ulice;
            ug.heslo = UserActions.hash(""); 
            ug.telefon = telefon;
-            
+           ug.roleId = 2;
+           
            ug.Insert();
            u.Id = ug.Id;
         }

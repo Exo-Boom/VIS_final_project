@@ -18,14 +18,6 @@
 
         public int role_id{ get; set; }
 
-        public int Objednavky
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
         public Uzivatel(int idU, string jmeno, string prijmeni, string email, string psc, string mesto, string zeme, string ulice, string heslo, string telefon, int roleId)
         {
             Adr = new Adresa();
