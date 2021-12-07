@@ -329,6 +329,14 @@ namespace vis
             if (s == "tisk")
             {
                 Export.ExportInvoiceTxt("Invoice.txt",str.ToString());
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                string message = "Váš soubor XML - "+ s + " byl vyexportován.\n";
+                Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
+                Console.WriteLine(message);
+                Console.ForegroundColor = ConsoleColor.White;
+                System.Threading.Thread.Sleep(3000);
+
             }
             
         }
