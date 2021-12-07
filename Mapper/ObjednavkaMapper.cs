@@ -88,16 +88,20 @@ namespace vis.Mapper
         
         public void Delete(int id)
         {
-            SqlConnection conn = new SqlConnection(Database.connectionString);
-            conn.Open();
+            PolozkaObjednavkyMapper p = new PolozkaObjednavkyMapper();
             
+            p.Delete(id);
+            
+            SqlConnection conn = new SqlConnection(Database.connectionString);
+            conn.Open();            
+
             var dotaz = "DELETE FROM Objednavka WHERE id_obj = @id_obj"; 
             SqlCommand com = new SqlCommand(dotaz,conn);
             
             com.Parameters.Add(new SqlParameter("@id_obj", SqlDbType.Int)).Value = id;
-
-            com.Prepare();
             
+            com.Prepare();
+
             com.ExecuteNonQuery();
             
             conn.Close();
@@ -135,7 +139,7 @@ namespace vis.Mapper
             com.Parameters.Add(new SqlParameter("@id", SqlDbType.Int)).Value = id;
 
             SqlDataReader data = com.ExecuteReader();
-
+            
             List<Objednavka> list = new List<Objednavka>();
             
             while (data.Read())

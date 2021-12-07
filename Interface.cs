@@ -151,6 +151,7 @@ namespace vis
             Console.Write("4"); Console.WriteLine(" - Pro editaci profilu");
             if (a.role_id == 1)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("5"); Console.WriteLine(" - Pro zobrazení všech uživatelů");
                 Console.Write("6"); Console.WriteLine(" - Pro zobrazení všech objednávek");
                 Console.Write("7"); Console.WriteLine(" - Pro zobrazení všech knih");
@@ -158,6 +159,7 @@ namespace vis
                 Console.Write("9"); Console.WriteLine(" - Pro odebrání knihy");
                 Console.Write("10"); Console.WriteLine(" - Pro odebrání uživatele");
                 Console.Write("11"); Console.WriteLine(" - Pro odebrání objednávky");
+                Console.ForegroundColor = ConsoleColor.White;
             }
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write("\n0"); Console.WriteLine(" - Pro odhlášení");

@@ -31,5 +31,22 @@ namespace vis.Mapper
 
             return list;
         }
+        
+        public void Delete(int id)
+        {
+            SqlConnection conn = new SqlConnection(Database.connectionString);
+            conn.Open();
+            
+            var dotaz = "DELETE FROM Polozky_objednavky WHERE Objednavka_id_obj = @Objednavka_id_obj"; 
+            SqlCommand com = new SqlCommand(dotaz,conn);
+            
+            com.Parameters.Add(new SqlParameter("@Objednavka_id_obj", SqlDbType.Int)).Value = id;
+            com.Prepare();
+            
+            com.ExecuteNonQuery();
+            
+            conn.Close();
+        }
+        
     }
 }

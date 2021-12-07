@@ -116,7 +116,7 @@ namespace vis
 
         public void removeUser(Uzivatel u)
         {
-            KnihaGateway kniha = new KnihaGateway();
+            UzivatelGateway Uzi = new UzivatelGateway();
             UzivatelTableGateway utg = new UzivatelTableGateway();
             List<Uzivatel> k = utg.SelectAll();
             
@@ -167,8 +167,8 @@ namespace vis
                     {
                         if (int.Parse(s) == k[i].Id)
                         {
-                            kniha.Id = k[i].Id;
-                            kniha.Delete();
+                            Uzi.Id = k[i].Id;
+                            Uzi.Delete();
 
                             Interface.deleteSuccess();
                             return;
