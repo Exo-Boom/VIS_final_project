@@ -741,7 +741,7 @@ namespace vis
                        Console.ForegroundColor = ConsoleColor.Red;
                        Console.WriteLine("Email: "+email+" Již někdo používá, prosím vyberte jiný, nebo se přihlaste");
                        Console.ForegroundColor = ConsoleColor.White;
-                       System.Threading.Thread.Sleep(4000);
+                       System.Threading.Thread.Sleep(4500);
                        return;
                    }
                } while (IsValidEmail(email) != true);
