@@ -65,7 +65,6 @@ namespace vis
                }
                catch (FormatException)
                {
-                   continue;
                }
 
                try
@@ -89,7 +88,6 @@ namespace vis
                }
                catch (FormatException)
                {
-                   continue;
                }
 
                do
