@@ -89,11 +89,20 @@ namespace vis
                             
                             if (s == "XML")
                             {
-                                Export.ExportVyberKnihToCsv("csv.csv",k);
+                                string filename = "ListKnih.xml";
+                                Export.ExportVyberKnihToXml(filename,k);
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                string message = "Váš soubor XML "+filename+ " byl vyexportován.\n";
+                                Console.WriteLine(message);
+                                Console.ForegroundColor = ConsoleColor.White;
+                                System.Threading.Thread.Sleep(3000);
+                                break;
                             }
+                            
                             if (s == "CSV")
                             {
-                                Export.ExportVyberKnihToXml("xml.xml",k);
+                                Export.ExportVyberKnihToCsv("ListKnih.csv",k);
+                                break;
                             }
                             if (s == "quit")
                             {
