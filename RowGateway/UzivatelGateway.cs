@@ -11,7 +11,8 @@ namespace vis.Gateway
         public string jmeno{ get; set; }
         public string prijmeni{ get; set; }
         public string email{ get; set; }
-        public Adresa Adr { get; set; }
+        
+        public Adresa Adr = new Adresa();
         public string heslo{ get; set; }
         public string telefon{ get; set; }
         public int roleId{ get; set; }
