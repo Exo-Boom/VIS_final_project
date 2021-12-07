@@ -127,7 +127,7 @@ namespace vis
             Console.WriteLine("Logged as "+a.Jmeno+" "+ a.Prijmeni);
             Console.ForegroundColor = ConsoleColor.White;
             
-            Console.Write("1"); Console.WriteLine(" - Pro zobrazení výběru knih");
+            Console.Write("\n1"); Console.WriteLine(" - Pro zobrazení výběru knih");
             Console.Write("2"); Console.WriteLine(" - Pro vytvoření objednávky");
             Console.Write("3"); Console.WriteLine(" - Pro zobrazení objednávek");
             Console.Write("4"); Console.WriteLine(" - Pro editaci profilu");
@@ -306,8 +306,8 @@ namespace vis
                 {
                     if (l[i].Id_k == k[j].Id)
                     {
-                        str.AppendLine(k[j].Nazev + "\t" + k[j].Isbn + "\t" + l[i].cena + "\t" + l[i].pocet);
-                        Console.WriteLine(k[j].Nazev + "\t" + k[j].Isbn + "\t" + l[i].cena + "\t" + l[i].pocet);
+                        str.AppendLine(k[j].Nazev + "\t" + k[j].Isbn + "\t" + l[i].cena + "\t\t\t\t" + l[i].pocet);
+                        Console.WriteLine(k[j].Nazev + "\t" + k[j].Isbn + "\t" + l[i].cena + "\t\t\t\t" + l[i].pocet);
                         
                     }
                 }

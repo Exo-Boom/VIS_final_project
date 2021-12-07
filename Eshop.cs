@@ -21,6 +21,7 @@ namespace vis
             {
                 while (true)
                 {
+                    Console.Clear();
                     I.Welcome();
                     s = Console.ReadLine();
                     try
