@@ -738,8 +738,11 @@ namespace vis
                    email = Console.ReadLine();
                    if (emailExists(email))
                    {
-                       email = "";
-                       continue;
+                       Console.ForegroundColor = ConsoleColor.Red;
+                       Console.WriteLine("Email: "+email+" Již někdo používá, prosím vyberte jiný, nebo se přihlaste");
+                       Console.ForegroundColor = ConsoleColor.White;
+                       System.Threading.Thread.Sleep(4000);
+                       return;
                    }
                } while (IsValidEmail(email) != true);
                
@@ -1073,8 +1076,12 @@ namespace vis
                    email = Console.ReadLine();
                    if (emailExists(email))
                    {
-                       email = "";
-                       continue;
+                       Console.ForegroundColor = ConsoleColor.Red;
+                       Console.WriteLine("Email: "+email+" Již někdo používá, prosím vyberte jiný, nebo se přihlaste");
+                       Console.ForegroundColor = ConsoleColor.White;
+                       System.Threading.Thread.Sleep(4000);
+                       
+                       return false;
                    }
                } while (IsValidEmail(email) != true);
                
