@@ -104,8 +104,11 @@ namespace vis
             Console.WriteLine(message);
             message = "1 - Pro registraci";
             Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
+            Console.WriteLine(message);
+            message = "2 - Anonymní režim";
+            Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
             Console.WriteLine(message+"\n");
-            message = "2 - Konec";
+            message = "3 - Konec";
             Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
             Console.WriteLine(message);
         }
@@ -266,7 +269,6 @@ namespace vis
             string s = "";
             StringBuilder str = new StringBuilder();
             
-
             if (u.role_id == 1)
             { 
                 UzivatelMapper m = new UzivatelMapper();
@@ -306,8 +308,8 @@ namespace vis
                 {
                     if (l[i].Id_k == k[j].Id)
                     {
-                        str.AppendLine(k[j].Nazev + "\t" + k[j].Isbn + "\t" + l[i].cena + "\t\t\t\t" + l[i].pocet);
-                        Console.WriteLine(k[j].Nazev + "\t" + k[j].Isbn + "\t" + l[i].cena + "\t\t\t\t" + l[i].pocet);
+                        str.AppendLine(k[j].Nazev + "\t" + k[j].Isbn + "\t" + l[i].cena + "\t\t\t" + l[i].pocet);
+                        Console.WriteLine(k[j].Nazev + "\t" + k[j].Isbn + "\t" + l[i].cena + "\t\t" + l[i].pocet);
                         
                     }
                 }
@@ -348,7 +350,7 @@ namespace vis
             
             Console.WriteLine("Název: " + k.Nazev);
             Console.WriteLine("ISBN: " + k.Isbn);
-            Console.WriteLine("Cena: " + k.Cena+" kč");
+            Console.WriteLine("Cena: " + k.Cena + " kč");
             Console.WriteLine("Počet na skladě: " + k.Pocet);
             Console.WriteLine("Popis knihy: " + k.Popis);
             

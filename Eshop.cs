@@ -10,12 +10,12 @@ namespace vis
     {
         public static void Run()
         {
-            Uzivatel u = new Uzivatel("Anonymous","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous",3);
+            Uzivatel u = new Uzivatel("Anonymous","","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous",3);
             Interface I = new Interface();
             UserDataActions uda = new UserDataActions();
             int Option = -1;
             string s;
-
+            
             
             while (true)
             {
@@ -44,7 +44,7 @@ namespace vis
                         }
 
                     }
-
+                    
                     if (Option == 1)
                     {
                         if (uda.Register(ref u))
@@ -52,7 +52,14 @@ namespace vis
                             I.RegisterSuccess();
                         }
                     }
+                    
                     if (Option == 2)
+                    {
+                        I.LoginSuccess();
+                        break;
+                    }
+                    
+                    if (Option == 3)
                     {
                         Console.Clear();
                         return;
