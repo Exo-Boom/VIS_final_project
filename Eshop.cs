@@ -211,6 +211,10 @@ namespace vis
                     {
                         uda.adminKnihy(u);
                     }
+                    if (Option == 8 && u.role_id == 1)
+                    {
+                        uda.AddKniha();
+                    }
                 }
             }
             

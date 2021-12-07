@@ -11,7 +11,124 @@ namespace vis
     public class UserDataActions
     {
 
-        public bool vytvorObjednavku(ref Uzivatel u)
+        public void AddKniha()
+        {
+           string nazev;
+           string isbn;
+           string Popis;
+           string cena;
+           string pocet;
+           string potvrzeni;
+           int pocetInt=0;
+           int cenaInt=0;
+           
+           KnihaGateway uk = new KnihaGateway();
+           
+           
+           bool ok = false;
+           
+           
+           do
+           {   Console.Clear();
+               Console.WriteLine("Pro ukončení napiše: quit");
+               Console.WriteLine("Prosím zadejte nový název: ");
+               nazev = Console.ReadLine();
+               if (nazev == "quit") return;
+               Console.Clear();
+               Console.WriteLine("Název: "+ nazev +"\t\t\tPro ukončení napiše: quit"+ "\n");
+               Console.WriteLine("Prosím zadejte ISBN knihy: ");
+               isbn = Console.ReadLine();
+               if (isbn == "quit") return;
+               Console.Clear();
+               Console.WriteLine("Název: "+nazev+"\t\t\tPro ukončení napiše: quit");
+               Console.WriteLine("ISBN: "+isbn);
+               Console.WriteLine("Prosím zadejte popis knihy: ");
+               Popis = Console.ReadLine();
+               if (Popis == "quit") return;
+               try
+               {
+                   while (true)
+                   {
+                      Console.Clear();
+                      Console.WriteLine("Název: "+nazev+"\t\t\tPro ukončení napiše: quit");
+                      Console.WriteLine("ISBN: "+isbn);
+                      Console.WriteLine("Popis: "+Popis+ "\n");
+                      Console.WriteLine("Prosím zadejte cenu nové knihy: ");
+                      cena = Console.ReadLine();
+                      if (cena == "quit") return;
+                      cenaInt = int.Parse(cena);
+                      if (cenaInt >= 0)
+                      {
+                          break;
+                      }
+                   }
+               }
+               catch (FormatException)
+               {
+                   continue;
+               }
+
+               try
+               {
+                   while (true)
+                   {
+                       Console.Clear();
+                       Console.WriteLine("Název: "+nazev+"\t\t\tPro ukončení napiše: quit");
+                       Console.WriteLine("ISBN: "+isbn);
+                       Console.WriteLine("Popis: "+Popis);
+                       Console.WriteLine("Cena: "+cena+ "\n");
+                       Console.WriteLine("Prosím zadejte počet kusů na skladě: ");
+                       pocet = Console.ReadLine();
+                       if (pocet == "quit") return;
+                       pocetInt = int.Parse(pocet);
+                       if (pocetInt >= 0)
+                       {
+                           break;
+                       }
+                   }
+               }
+               catch (FormatException)
+               {
+                   continue;
+               }
+
+               do
+               {                     
+                   Console.Clear();
+                   Console.WriteLine("Název: "+nazev+"\t\t\tPro ukončení napiše: quit");
+                   Console.WriteLine("ISBN: "+isbn);
+                   Console.WriteLine("Popis: "+Popis);
+                   Console.WriteLine("Cena: "+cena);
+                   Console.WriteLine("Kusy na skladě: "+pocet+ "\n");
+         
+                   Console.WriteLine("Jsou všechny údaje správně? y/n" );
+                   potvrzeni = Console.ReadLine();
+
+                   if (potvrzeni == "y")
+                   {
+                       ok = true;
+                       break;
+                   }
+
+                   if (potvrzeni == "n")
+                   {
+                       break;
+                   }
+               } while (true);
+
+           } while (ok != true);
+
+           uk.cena = cenaInt;
+           uk.pocet= pocetInt;
+           uk.Nazev= nazev;
+           uk.Popis=Popis;
+           uk.ISBN=isbn;
+           
+           uk.Insert();
+        }
+    
+
+    public bool vytvorObjednavku(ref Uzivatel u)
         {
             ObjednavkaMapper om = new ObjednavkaMapper();
             List<(Kniha,int)> knihy = new List<(Kniha,int)>();
@@ -256,7 +373,6 @@ namespace vis
         
         public bool EditUzivatel(ref Uzivatel u,int role = 2)
         {
-            
             Uzivatel dirty;
             string s = "";
             int i=0;
@@ -394,8 +510,8 @@ namespace vis
         }
         
         public void AnonymTemporaryProfile(ref Uzivatel u)
-        {
-            string jmeno;
+        { 
+           string jmeno;
            string prijmeni;
            string email;
            string psc;

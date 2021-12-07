@@ -154,6 +154,7 @@ namespace vis
                 Console.Write("5"); Console.WriteLine(" - Pro zobrazení všech uživatelů");
                 Console.Write("6"); Console.WriteLine(" - Pro zobrazení všech objednávek");
                 Console.Write("7"); Console.WriteLine(" - Pro zobrazení všech knih");
+                Console.Write("8"); Console.WriteLine(" - Pro přidání nové knihy");
             }
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write("\n0"); Console.WriteLine(" - Pro odhlášení");
