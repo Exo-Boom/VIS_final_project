@@ -737,7 +737,7 @@ namespace vis
                    Console.WriteLine("Prosím zadejte email: ");
                    email = Console.ReadLine();
                        
-               } while (IsValidEmail(email) != true && emailExists(email) == false);
+               } while (IsValidEmail(email) != true && emailExists(email));
                
                Console.Clear();
                Console.WriteLine("Jmeno: "+jmeno+"\t\t\tPro ukončení napiše: quit");
@@ -1068,7 +1068,7 @@ namespace vis
                    Console.WriteLine("Prosím zadejte email: ");
                    email = Console.ReadLine();
                        
-               } while (IsValidEmail(email) != true && emailExists(email) == false);
+               } while (IsValidEmail(email) != true && emailExists(email));
                
                Console.Clear();
                Console.WriteLine("Jmeno: "+jmeno+"\t\t\tPro ukončení napiše: quit");
