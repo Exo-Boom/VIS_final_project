@@ -352,11 +352,20 @@ namespace vis
                         }
                         case 10:
                         {
-                            if (dirty.role_id == 0)
+                            if (dirty.role_id == 1)
                             {
-                                Console.WriteLine("Zadej novou roli: ");
-                                s = Console.ReadLine();
-                                dirty.role_id = Int32.Parse(s);
+                                while (true)
+                                {
+                                    Console.WriteLine("Zadej novou roli: ");
+                                    s = Console.ReadLine();
+                                    if (Int32.Parse(s)==1 || Int32.Parse(s) == 2)
+                                    {
+                                        dirty.role_id = Int32.Parse(s);
+                                    }
+                                    
+                                    
+                                }
+
                             }
 
                             break;

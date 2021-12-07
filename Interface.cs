@@ -94,7 +94,7 @@ namespace vis
             Console.Write("7"); Console.WriteLine(" - Pro změnu hesla");
             Console.Write("8"); Console.WriteLine(" - Pro změnu telefonu");
             Console.Write("9"); Console.WriteLine(" - Pro změnu ulice");
-            if (a.role_id == 0)
+            if (a.role_id == 1)
             {
                Console.Write("10"); Console.WriteLine(" - Pro změnu role"); 
             }
@@ -333,7 +333,7 @@ namespace vis
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\nPro ukončení napište quit");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\nPro export faktuty napište tisk");
+            Console.WriteLine("\nPro export faktury napište tisk");
             Console.ForegroundColor = ConsoleColor.White;
             
             s = Console.ReadLine();
