@@ -1,6 +1,6 @@
 ﻿namespace vis.Gateway
 {
-    public interface GatewayInterface
+    public interface RowGatewayInterface
     {
         int Id{get; set;}
         

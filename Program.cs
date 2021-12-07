@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using vis.Gateway;
-
-namespace vis
+﻿namespace vis
 {
     class Program
     {

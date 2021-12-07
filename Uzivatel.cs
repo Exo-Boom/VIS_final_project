@@ -9,13 +9,8 @@
         public string Prijmeni{ get; set; }
          
         public string Email{ get; set; }
-
-        public string Mesto{ get; set; }
-      
-        public string Zeme{ get; set; }
-
-        public string Psc{ get; set; }
-        public string Ulice{ get; set; }
+        
+        public Adresa Adr{ get; set; }
 
         public string Heslo{ get; set; }
          
@@ -33,35 +28,34 @@
 
         public Uzivatel(int idU, string jmeno, string prijmeni, string email, string psc, string mesto, string zeme, string ulice, string heslo, string telefon, int roleId)
         {
-            Mesto = mesto;
-            Zeme = zeme;
-            Ulice = ulice;
+            Adr.Mesto = mesto;
+            Adr.Zeme = zeme;
+            Adr.Ulice = ulice;
             role_id = roleId;
             Id = idU;
             Jmeno = jmeno;
             Prijmeni = prijmeni;
             Email = email;
-            Psc = psc;
+            Adr.Psc = psc;
             Heslo = heslo;
             Telefon = telefon;
         }
 
         public Uzivatel(string jmeno, string prijmeni, string email, string psc, string mesto, string zeme, string ulice, string heslo, string telefon, int roleId)
         {
-            Mesto = mesto;
-            Zeme = zeme;
-            Ulice = ulice;
+            Adr.Mesto = mesto;
+            Adr.Zeme = zeme;
+            Adr.Ulice = ulice;
             role_id = roleId;
             Id = -1;
             Jmeno = jmeno;
             Prijmeni = prijmeni;
             Email = email;
-            Psc = psc;
+            Adr.Psc = psc;
             Heslo = heslo;
             Telefon = telefon;
-            Psc = psc;
 
-            
+
         }
 
     }

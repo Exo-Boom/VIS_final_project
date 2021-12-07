@@ -234,9 +234,6 @@ namespace vis
             return true;
         }
         
-        
-        
-        
         public List<Kniha> getKnihy()
         {
             KnihaTableGateway kg = new KnihaTableGateway();
@@ -310,21 +307,21 @@ namespace vis
                         {
                             Console.WriteLine("Zadej nové PSC: ");
                             s = Console.ReadLine();
-                            dirty.Psc = s;
+                            dirty.Adr.Psc = s;
                             break;
                         }
                         case 5:
                         {
                             Console.WriteLine("Zadej nové město: ");
                             s = Console.ReadLine();
-                            dirty.Mesto = s;
+                            dirty.Adr.Mesto = s;
                             break;
                         }
                         case 6:
                         {
                             Console.WriteLine("Zadej novou země: ");
                             s = Console.ReadLine();
-                            dirty.Zeme = s;
+                            dirty.Adr.Zeme = s;
                             break;
                         }
                         case 7:
@@ -346,7 +343,7 @@ namespace vis
                         {
                             Console.WriteLine("Zadej novou ulici: ");
                             s = Console.ReadLine();
-                            dirty.Ulice = s;
+                            dirty.Adr.Ulice = s;
                             break;
                             
                         }
@@ -370,7 +367,7 @@ namespace vis
                 }
 
 
-                um.Update(dirty.Id,dirty.Jmeno,dirty.Prijmeni,dirty.Email,dirty.Psc,dirty.Mesto,dirty.Zeme,dirty.Ulice,dirty.Heslo,dirty.Telefon,dirty.role_id);
+                um.Update(dirty.Id,dirty.Jmeno,dirty.Prijmeni,dirty.Email,dirty.Adr.Psc,dirty.Adr.Mesto,dirty.Adr.Zeme,dirty.Adr.Ulice,dirty.Heslo,dirty.Telefon,dirty.role_id);
                 
                 return true;
             }

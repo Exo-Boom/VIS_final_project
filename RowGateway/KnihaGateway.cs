@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace vis.Gateway
 {
-    public class KnihaGateway : GatewayInterface
+    public class KnihaGateway : RowGatewayInterface
     {
         public int Id { get; set; }
         public string Nazev{ get; set; }

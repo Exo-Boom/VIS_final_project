@@ -64,7 +64,7 @@ namespace vis
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Uzivatel: "+ a.Jmeno +" "+ a.Prijmeni);
             Console.WriteLine("Email: "+ a.Email);
-            Console.WriteLine("Adresa: "+ a.Ulice + $" , {a.Mesto}, {a.Psc}, {a.Zeme}");
+            Console.WriteLine("Adresa: "+ a.Adr.Ulice + $" , {a.Adr.Mesto}, {a.Adr.Psc}, {a.Adr.Zeme}");
             Console.WriteLine("Telefon: "+ a.Telefon + "\n");
             
             Console.WriteLine("Vyberte možnost co chcete upravit: ");
@@ -314,7 +314,7 @@ namespace vis
             
             if (s == "tisk")
             {
-               
+                
             }
             
         }

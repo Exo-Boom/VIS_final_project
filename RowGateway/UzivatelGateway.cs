@@ -5,16 +5,13 @@ using System.Data.SqlClient;
 
 namespace vis.Gateway
 {
-    public class UzivatelGateway : GatewayInterface
+    public class UzivatelGateway : RowGatewayInterface
     {
         public int Id { get; set; }
         public string jmeno{ get; set; }
         public string prijmeni{ get; set; }
         public string email{ get; set; }
-        public string psc{ get; set; }
-        public string mesto{ get; set; }
-        public string zeme{ get; set; }
-        public string ulice{ get; set; }
+        public Adresa Adr { get; set; }
         public string heslo{ get; set; }
         public string telefon{ get; set; }
         public int roleId{ get; set; }
@@ -30,12 +27,12 @@ namespace vis.Gateway
             com.Parameters.Add(new SqlParameter("@jmeno", SqlDbType.VarChar, 30)).Value = jmeno;
             com.Parameters.Add(new SqlParameter("@Prijmeni", SqlDbType.VarChar, 30)).Value = prijmeni;
             com.Parameters.Add(new SqlParameter("@email", SqlDbType.Text, 30)).Value = email;
-            com.Parameters.Add(new SqlParameter("@PSC", SqlDbType.Text, 7)).Value = psc;
-            com.Parameters.Add(new SqlParameter("@mesto", SqlDbType.Text, 20)).Value = mesto;
-            com.Parameters.Add(new SqlParameter("@zeme", SqlDbType.Text, 30)).Value = zeme;
+            com.Parameters.Add(new SqlParameter("@PSC", SqlDbType.Text, 7)).Value = Adr.Psc;
+            com.Parameters.Add(new SqlParameter("@mesto", SqlDbType.Text, 20)).Value = Adr.Mesto;
+            com.Parameters.Add(new SqlParameter("@zeme", SqlDbType.Text, 30)).Value = Adr.Zeme;
             com.Parameters.Add(new SqlParameter("@heslo", SqlDbType.Text, 64)).Value = heslo;
             com.Parameters.Add(new SqlParameter("@telefon", SqlDbType.Text, 30)).Value = telefon;
-            com.Parameters.Add(new SqlParameter("@ulice", SqlDbType.Text, 30)).Value = ulice;
+            com.Parameters.Add(new SqlParameter("@ulice", SqlDbType.Text, 30)).Value = Adr.Ulice;
             com.Parameters.Add(new SqlParameter("@Role_id_r", SqlDbType.Int)).Value = roleId;
 
             com.Prepare();
@@ -59,12 +56,12 @@ namespace vis.Gateway
             com.Parameters.Add(new SqlParameter("@jmeno", SqlDbType.VarChar, 30)).Value = jmeno;
             com.Parameters.Add(new SqlParameter("@Prijmeni", SqlDbType.VarChar, 30)).Value = prijmeni;
             com.Parameters.Add(new SqlParameter("@email", SqlDbType.Text, 30)).Value = email;
-            com.Parameters.Add(new SqlParameter("@PSC", SqlDbType.Text, 7)).Value = psc;
-            com.Parameters.Add(new SqlParameter("@mesto", SqlDbType.Text, 20)).Value = mesto;
-            com.Parameters.Add(new SqlParameter("@zeme", SqlDbType.Text, 30)).Value = zeme;
+            com.Parameters.Add(new SqlParameter("@PSC", SqlDbType.Text, 7)).Value = Adr.Psc;
+            com.Parameters.Add(new SqlParameter("@mesto", SqlDbType.Text, 20)).Value = Adr.Mesto;
+            com.Parameters.Add(new SqlParameter("@zeme", SqlDbType.Text, 30)).Value = Adr.Zeme;
             com.Parameters.Add(new SqlParameter("@heslo", SqlDbType.Text, 64)).Value = heslo;
             com.Parameters.Add(new SqlParameter("@telefon", SqlDbType.Text, 30)).Value = telefon;
-            com.Parameters.Add(new SqlParameter("@ulice", SqlDbType.Text, 30)).Value = ulice;
+            com.Parameters.Add(new SqlParameter("@ulice", SqlDbType.Text, 30)).Value = Adr.Ulice;
             com.Parameters.Add(new SqlParameter("@Role_id_r", SqlDbType.Int)).Value = roleId;
             com.Prepare();
             

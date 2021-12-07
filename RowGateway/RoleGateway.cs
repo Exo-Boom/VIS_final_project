@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 namespace vis.Gateway
 {
 
-    public class RoleGateway: GatewayInterface
+    public class RoleGateway: RowGatewayInterface
     {   
         public int Id{ get; set;}
         public string nazev{ get; set;}

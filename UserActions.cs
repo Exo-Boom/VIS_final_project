@@ -43,10 +43,10 @@ namespace vis
                 ug.jmeno = jmeno;
                 ug.prijmeni = prijmeni;
                 ug.email = email;
-                ug.psc = psc;
-                ug.mesto = mesto;
-                ug.zeme = zeme;
-                ug.ulice = ulice;
+                ug.Adr.Psc = psc;
+                ug.Adr.Mesto = mesto;
+                ug.Adr.Zeme = zeme;
+                ug.Adr.Ulice = ulice;
                 ug.heslo = heslo;
                 ug.telefon = telefon;
                 ug.roleId = role;

@@ -107,7 +107,7 @@ namespace vis
                                     System.Threading.Thread.Sleep(3000);
                                     break; 
                                 }
-                                catch (Exception e)
+                                catch (Exception)
                                 {
                                     Console.WriteLine("Při exportu došlo k chybě");
                                     System.Threading.Thread.Sleep(3000);
@@ -118,7 +118,7 @@ namespace vis
                             {
                                 try
                                 {
-                                    Export.ExportVyberKnihToCsv("ListKnih.csv",k);
+                                    Export.ExportVyberKnihToCsv(s,k);
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     string message = "Váš soubor CSV - "+ s + " byl vyexportován.\n";
                                     Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
@@ -127,7 +127,7 @@ namespace vis
                                     System.Threading.Thread.Sleep(3000);
                                     break; 
                                 }
-                                catch (Exception e)
+                                catch (Exception)
                                 {
                                     Console.WriteLine("Při exportu došlo k chybě");
                                     System.Threading.Thread.Sleep(3000);

@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace vis.Gateway
 {
-    public class Polozky_objednavkyGateway : GatewayInterface
+    public class Polozky_objednavkyGateway : RowGatewayInterface
     {
         public int Id {get; set;}
         public int id_o{get; set;}
