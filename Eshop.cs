@@ -19,10 +19,10 @@ namespace vis
             
             while (true)
             {
-                u = new Uzivatel("Anonymous","","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous",3);
-
                 while (true)
                 {
+                    u = new Uzivatel("Anonymous","","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous",3);
+
                     Console.Clear();
                     I.Welcome();
                     s = Console.ReadLine();
