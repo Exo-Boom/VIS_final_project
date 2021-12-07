@@ -113,7 +113,7 @@ namespace vis
                     }
                     if (Option == 5)
                     {
-                        
+                        Interface.printAllUsers(u);
                     }
                     if (Option == 6)
                     {

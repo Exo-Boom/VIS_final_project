@@ -263,6 +263,7 @@ namespace vis
             KnihaTableGateway kgt = new KnihaTableGateway();
             List<Kniha> k = kgt.SelectAll();
             Uzivatel kupujici = null;
+            string s = "";
             
             if (u.role_id == 1)
             { 
@@ -299,9 +300,22 @@ namespace vis
             }
             
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\nPokračujte stisknutím ENTER");
+            Console.WriteLine("\nPro ukončení napište quit");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nPro export faktuty napište tisk");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.ReadLine();
+            
+            s = Console.ReadLine();
+
+            if (s == "quit")
+            {
+                return;
+            }
+            
+            if (s == "tisk")
+            {
+               
+            }
             
         }
 
@@ -328,6 +342,73 @@ namespace vis
             Console.WriteLine("\n0 - Pro opuštění editace");
             Console.ForegroundColor = ConsoleColor.White;
         }
+        
+        public static void printAllUsers(Uzivatel u)
+        {
+            UzivatelTableGateway utg = new UzivatelTableGateway();
+            List<Uzivatel> k = utg.SelectAll();
+            UserDataActions uda = new UserDataActions();
+            Uzivatel edit = null;
+            RoleGateway role = new RoleGateway();
+            
+            
+            string s = "";
+            
+            while(true){
+                Console.Clear();
+                
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Logged as "+u.Jmeno+" "+ u.Prijmeni+"\n");
+                Console.ForegroundColor = ConsoleColor.White;
+                
+                Console.WriteLine("ID\t\t" + "Jméno\t\t" + "Email\t" + "Role\t\t" + "Heslo\t");
+
+                for (int i = 0; i < k.Count; i++)
+                {
+                    role.Id = k[i].role_id;
+                    role.SelectById();
+                    Console.WriteLine(k[i].Id+"\t" + k[i].Jmeno+" " + k[i].Prijmeni + "\t" + k[i].Email +"\t" + role.nazev + "\t" + k[i].Heslo);
+
+                }
+                
+                Console.WriteLine("\nPro detail uživatele napište její ID");
+                
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nPro ukončení napište quit");
+                Console.ForegroundColor = ConsoleColor.White;
+                
+
+                s = Console.ReadLine();
+
+                if (s == "quit")
+                {
+                    return;
+                }
+
+                try
+                {
+                    for (int i = 0; i < k.Count; i++)
+                    {
+                        if (int.Parse(s) == k[i].Id)
+                        {
+                            edit = k[i];
+                            EditUzivatelMenu(edit);
+                            uda.EditUzivatel(ref edit);
+                        }
+                    }
+                    
+
+                }
+                catch (FormatException)
+                {
+                    
+                    continue;
+                }
+            }
+        }
+        
+        
+        
         
     }
 }

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
+
 namespace vis
 {
     public class Export
     {
-        public static bool ExportToCsv(string filename, List<Kniha> seznam)
+        public static bool ExportVyberKnihToCsv(string filename, List<Kniha> seznam)
         {
             try
             {
@@ -29,7 +30,7 @@ namespace vis
             
         }
         
-        public static bool ExportToXml(string filename, List<Kniha> seznam)
+        public static bool ExportVyberKnihToXml(string filename, List<Kniha> seznam)
         {
             try
             {
@@ -50,6 +51,19 @@ namespace vis
             }
             
         }
+
+        
+        
+        
+        
+        
+        
+        
+        
         
     }
+    
+    
+    
+    
 }

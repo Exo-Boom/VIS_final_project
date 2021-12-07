@@ -9,8 +9,7 @@ namespace vis
     {
         static void Main(string[] args)
         {
-           
-           Eshop.Run();
+            Eshop.Run();
         }
     }
 }
