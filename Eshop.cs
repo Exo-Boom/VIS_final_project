@@ -197,15 +197,15 @@ namespace vis
                         I.Logout(ref u);
                         break;
                     }
-                    if (Option == 5)
+                    if (Option == 5 && u.role_id == 1)
                     {
                         Interface.printAllUsers(u);
                     }
-                    if (Option == 6)
+                    if (Option == 6 && u.role_id == 1)
                     {
                         Interface.printAllObjednavky(u);
                     }                    
-                    if (Option == 7)
+                    if (Option == 7 && u.role_id == 1)
                     {
                         uda.adminKnihy(u);
                     }

@@ -67,7 +67,7 @@ namespace vis
                 Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
                 Console.WriteLine(message);
                 Console.ForegroundColor = ConsoleColor.White;
-                System.Threading.Thread.Sleep(3000);
+                System.Threading.Thread.Sleep(5000);
             
         }
         
