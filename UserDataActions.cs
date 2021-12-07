@@ -13,12 +13,6 @@ namespace vis
 
         public bool vytvorObjednavku(ref Uzivatel u)
         {
-
-            if (u.role_id == 3)
-            {
-                AnonymTemporaryProfile(ref u);
-            }
-            
             ObjednavkaMapper om = new ObjednavkaMapper();
             List<(Kniha,int)> knihy = new List<(Kniha,int)>();
             int idk,pocet;
@@ -175,6 +169,10 @@ namespace vis
                     
                     if (potvrzeni == "2")
                     {
+                        if (u.role_id == 3)
+                        {   
+                            AnonymTemporaryProfile(ref u);
+                        }
                         break;
                     }
                     if (potvrzeni == "3")
