@@ -106,21 +106,20 @@ namespace vis
                             continue;
                         }
                     }
-                    if (Option == 5)
+                    if (Option == 0)
                     {
                         I.Logout(ref u);
                         break;
                     }
-                    if (Option == 6)
+                    if (Option == 5)
                     {
                         
                     }
-                    if (Option == 7)
+                    if (Option == 6)
                     {
-                        
-                        
+                        Interface.printAllObjednavky(u);
                     }                    
-                    if (Option == 8)
+                    if (Option == 7)
                     {
                         uda.adminKnihy(u);
                     }

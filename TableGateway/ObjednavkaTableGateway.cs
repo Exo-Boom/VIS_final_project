@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace vis.TableGateway
 {
-    public class ObjednavkaGateway
+    public class ObjednavkaTableGateway
     {
         public List<Objednavka> SelectAll()
         {

@@ -133,12 +133,12 @@ namespace vis
             Console.Write("4"); Console.WriteLine(" - Pro editaci profilu");
             if (a.role_id == 1)
             {
-                Console.Write("6"); Console.WriteLine(" - Pro zobrazení všech uživatelů");
-                Console.Write("7"); Console.WriteLine(" - Pro zobrazení všech objednávek");
-                Console.Write("8"); Console.WriteLine(" - Pro zobrazení všech knih");
+                Console.Write("5"); Console.WriteLine(" - Pro zobrazení všech uživatelů");
+                Console.Write("6"); Console.WriteLine(" - Pro zobrazení všech objednávek");
+                Console.Write("7"); Console.WriteLine(" - Pro zobrazení všech knih");
             }
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write("\n5"); Console.WriteLine(" - Pro odhlášení");
+            Console.Write("\n0"); Console.WriteLine(" - Pro odhlášení");
             Console.ForegroundColor = ConsoleColor.White;
         }
         
@@ -202,7 +202,57 @@ namespace vis
                 }
             }
         }
+        
+        public static void printAllObjednavky(Uzivatel u)
+        {
+            ObjednavkaTableGateway og = new ObjednavkaTableGateway();
+            List<Objednavka> k = og.SelectAll();
+            string s = "";
+            
+            while(true){
+                Console.Clear();
+                
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Logged as "+u.Jmeno+" "+ u.Prijmeni+"\n");
+                Console.ForegroundColor = ConsoleColor.White;
+                
+                Console.WriteLine("ID\t\t" + "Čas\t\t" + "Celková cena");
 
+                for (int i = 0; i < k.Count; i++)
+                {
+                    Console.WriteLine(k[i].Id+"\t" + k[i].Cas +"\t" + k[i].Celkova_cena+" kč");
+                }
+                
+                Console.WriteLine("\nPro detail objednavky napište její ID");
+                Console.WriteLine("\nPro ukončení napište quit");
+
+                s = Console.ReadLine();
+
+                if (s == "quit")
+                {
+                    return;
+                }
+
+                try
+                {
+                    for (int i = 0; i < k.Count; i++)
+                    {
+                        if (int.Parse(s) == k[i].Id)
+                        {
+                            printJedneObjednavkyUzivatele(k[i]);
+                        }
+                    }
+                    
+
+                }
+                catch (FormatException)
+                {
+                    
+                    continue;
+                }
+            }
+        }
+        
         public static void printJedneObjednavkyUzivatele(Objednavka o)
         {
             KnihaTableGateway kgt = new KnihaTableGateway();
