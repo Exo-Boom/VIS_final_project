@@ -356,7 +356,7 @@ namespace vis
                             {
                                 while (true)
                                 {
-                                    Console.WriteLine("Zadej novou roli: ");
+                                    Console.WriteLine("Zadej novou roli: (1 - Admin, 2 - User)");
                                     s = Console.ReadLine();
                                     if (Int32.Parse(s)==1 || Int32.Parse(s) == 2)
                                     {
