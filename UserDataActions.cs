@@ -10,7 +10,182 @@ namespace vis
 {
     public class UserDataActions
     {
+        public void removeObjednavka(Uzivatel u)
+        {
+            ObjednavkaTableGateway otg = new ObjednavkaTableGateway();
+            ObjednavkaMapper objMapper = new ObjednavkaMapper();
+            List<Objednavka> k = otg.SelectAll();
+            
 
+            string s = "";
+            while (true)
+            {
+                Console.Clear();
+
+                Console.WriteLine("ID\t\t" + "Čas\t\t" + "Celková cena");
+
+                for (int i = 0; i < k.Count; i++)
+                {
+                    Console.WriteLine(k[i].Id+"\t" + k[i].Cas +"\t" + k[i].Celkova_cena+" kč");
+                }
+                
+                Console.WriteLine("\nPro odstranění objednávky napište její ID");
+                
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nPro ukončení napište quit");
+                Console.ForegroundColor = ConsoleColor.White;
+
+                
+                s = Console.ReadLine();
+                
+                if (s == "quit")
+                {
+                    return;
+                }
+
+                try
+                {
+                    for (int i = 0; i < k.Count; i++)
+                    {
+                        if (int.Parse(s) == k[i].Id)
+                        {
+                            objMapper.Delete(k[i].Id);
+
+                            Interface.deleteSuccess();
+                            
+                            return;
+                        }
+                    }
+                    
+
+                }
+                catch (FormatException)
+                {
+                    
+                    continue;
+                }
+            }
+        }
+        public void removeKniha()
+        {
+            KnihaTableGateway ktg = new KnihaTableGateway();
+            KnihaGateway kniha = new KnihaGateway();
+            List<Kniha> k = ktg.SelectAll();
+            
+
+            string s = "";
+            while (true)
+            {
+                Interface.printKnihy(k);
+                Console.WriteLine("\nPro odstranění knihy napište její ID");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nPro opuštění napiš quit");
+                Console.ForegroundColor = ConsoleColor.White;
+                
+                s = Console.ReadLine();
+                
+                if (s == "quit")
+                {
+                    return;
+                }
+
+                try
+                {
+                    for (int i = 0; i < k.Count; i++)
+                    {
+                        if (int.Parse(s) == k[i].Id)
+                        {
+                            kniha.Id = k[i].Id;
+                            kniha.Delete();
+
+                            Interface.deleteSuccess();
+                            
+                            return;
+                        }
+                    }
+                    
+
+                }
+                catch (FormatException)
+                {
+                    
+                    continue;
+                }
+            }
+        }
+
+        public void removeUser(Uzivatel u)
+        {
+            KnihaGateway kniha = new KnihaGateway();
+            UzivatelTableGateway utg = new UzivatelTableGateway();
+            List<Uzivatel> k = utg.SelectAll();
+            
+            RoleGateway role = new RoleGateway();
+            
+            while (true)
+            {          
+                Console.Clear();
+
+                Console.WriteLine("ID\t\t" + "Jméno\t\t" + "Email\t" + "Role\t\t" + "Heslo\t");
+
+                for (int i = 0; i < k.Count; i++)
+                {
+                    role.Id = k[i].role_id;
+                    role.SelectById();
+                    if (u.Id == k[i].Id)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(k[i].Id + "\t" + k[i].Jmeno + " " + k[i].Prijmeni + "\t" + k[i].Email + "\t" +
+                                          role.nazev + "\t" + k[i].Heslo);
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    else
+                    {
+                        Console.WriteLine(k[i].Id + "\t" + k[i].Jmeno + " " + k[i].Prijmeni + "\t" + k[i].Email + "\t" +
+                                          role.nazev + "\t" + k[i].Heslo);
+                    }
+                }
+                
+                Console.WriteLine("\nPro odstranění uživatele napište jeho ID");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nPro opuštění napiš quit");
+                Console.ForegroundColor = ConsoleColor.White;
+                
+                string s = "";
+                
+
+                s = Console.ReadLine();
+
+                if (s == "quit")
+                {
+                    return;
+                }
+
+                try
+                {
+                    for (int i = 0; i < k.Count; i++)
+                    {
+                        if (int.Parse(s) == k[i].Id)
+                        {
+                            kniha.Id = k[i].Id;
+                            kniha.Delete();
+
+                            Interface.deleteSuccess();
+                            return;
+
+                        }
+                    }
+                    
+
+                }
+                catch (FormatException)
+                {
+                    
+                    continue;
+                }
+            }
+        }
+        
         public void AddKniha()
         {
            string nazev;

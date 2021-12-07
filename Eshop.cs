@@ -215,6 +215,18 @@ namespace vis
                     {
                         uda.AddKniha();
                     }
+                    if (Option == 9 && u.role_id == 1)
+                    {
+                        uda.removeKniha();
+                    }
+                    if (Option == 10 && u.role_id == 1)
+                    {
+                        uda.removeUser(u);
+                    }
+                    if (Option == 11 && u.role_id == 1)
+                    {
+                        uda.removeObjednavka(u);
+                    }
                 }
             }
             

@@ -13,7 +13,6 @@ namespace vis
             [XmlAttribute]
             public string Popis{ get; set; }
             [XmlAttribute]
-            
             public int Cena{ get; set; }
             [XmlAttribute]
             

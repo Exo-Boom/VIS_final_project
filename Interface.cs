@@ -155,6 +155,9 @@ namespace vis
                 Console.Write("6"); Console.WriteLine(" - Pro zobrazení všech objednávek");
                 Console.Write("7"); Console.WriteLine(" - Pro zobrazení všech knih");
                 Console.Write("8"); Console.WriteLine(" - Pro přidání nové knihy");
+                Console.Write("9"); Console.WriteLine(" - Pro odebrání knihy");
+                Console.Write("10"); Console.WriteLine(" - Pro odebrání uživatele");
+                Console.Write("11"); Console.WriteLine(" - Pro odebrání objednávky");
             }
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write("\n0"); Console.WriteLine(" - Pro odhlášení");
@@ -377,11 +380,22 @@ namespace vis
             Console.Write("3"); Console.WriteLine(" - Pro změnu ceny");
             Console.Write("4"); Console.WriteLine(" - Pro dopnění zboží");
             Console.Write("5"); Console.WriteLine(" - Pro změnu popisu knihy");
-
+            
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\n0 - Pro opuštění editace");
             Console.ForegroundColor = ConsoleColor.White;
         }
+        public static void deleteSuccess()
+        {
+            Console.Clear();
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\nPoložka byla úspěšně smazána.");
+            Console.ForegroundColor = ConsoleColor.White;
+            
+            System.Threading.Thread.Sleep(4000);
+        }
+        
         
         public static void printAllUsers(Uzivatel u)
         {
