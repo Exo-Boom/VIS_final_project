@@ -327,7 +327,7 @@ namespace vis
             int idk,pocet;
             string potvrzeni;
             bool Existing=false;
-            
+            bool abort = true;
 
             List<Kniha> list = getKnihy();
             
@@ -480,7 +480,11 @@ namespace vis
                     {
                         if (u.role_id == 3)
                         {   
-                            AnonymTemporaryProfile(ref u);
+                            abort = AnonymTemporaryProfile(ref u);
+                            if (abort == false)
+                            {
+                                return false;
+                            }
                         }
                         break;
                     }
@@ -701,7 +705,7 @@ namespace vis
             
         }
         
-        public void AnonymTemporaryProfile(ref Uzivatel u)
+        public bool AnonymTemporaryProfile(ref Uzivatel u)
         { 
            string jmeno;
            string prijmeni;
@@ -723,12 +727,12 @@ namespace vis
                Console.WriteLine("Pro ukončení napiše: quit");
                Console.WriteLine("Prosím zadejte jméno: ");
                jmeno = Console.ReadLine();
-               if (jmeno == "quit") return;
+               if (jmeno == "quit") return false;
                Console.Clear();
                Console.WriteLine("Jmeno: "+jmeno +"\t\t\tPro ukončení napiše: quit"+ "\n");
                Console.WriteLine("Prosím zadejte Prijmeni: ");
                prijmeni = Console.ReadLine();
-               if (prijmeni == "quit") return;
+               if (prijmeni == "quit") return false;
                do
                {
                    Console.Clear();
@@ -742,7 +746,7 @@ namespace vis
                        Console.WriteLine("Email: "+email+" Již někdo používá, prosím vyberte jiný, nebo se přihlaste");
                        Console.ForegroundColor = ConsoleColor.White;
                        System.Threading.Thread.Sleep(4500);
-                       return;
+                       return false;
                    }
                } while (IsValidEmail(email) != true);
                
@@ -752,7 +756,7 @@ namespace vis
                Console.WriteLine("Email: "+email+ "\n");
                Console.WriteLine("Prosím zadejte PSČ: ");
                psc = Console.ReadLine();
-               if (psc == "quit") return;
+               if (psc == "quit") return false;
                Console.Clear();
                Console.WriteLine("Jmeno: "+jmeno+"\t\t\tPro ukončení napiše: quit");
                Console.WriteLine("Prijmeni: "+prijmeni);
@@ -760,7 +764,7 @@ namespace vis
                Console.WriteLine("PSČ: "+psc+ "\n");
                Console.WriteLine("Prosím zadejte město: ");
                mesto = Console.ReadLine();
-               if (mesto == "quit") return;
+               if (mesto == "quit") return false;
                Console.Clear();
                Console.WriteLine("Jmeno: "+jmeno+"\t\t\tPro ukončení napiše: quit");
                Console.WriteLine("Prijmeni: "+prijmeni);
@@ -769,7 +773,7 @@ namespace vis
                Console.WriteLine("Město: "+mesto+ "\n");
                Console.WriteLine("Prosím zadejte zemi: ");
                zeme = Console.ReadLine();
-               if (zeme == "quit") return;
+               if (zeme == "quit") return false;
                Console.Clear();
                Console.WriteLine("Jmeno: "+jmeno+"\t\t\tPro ukončení napiše: quit");
                Console.WriteLine("Prijmeni: "+prijmeni);
@@ -779,7 +783,7 @@ namespace vis
                Console.WriteLine("Země: "+zeme+ "\n");
                Console.WriteLine("Prosím zadejte ulici: ");
                ulice = Console.ReadLine();
-               if (ulice == "quit") return;
+               if (ulice == "quit") return false;
                Console.Clear();
                Console.WriteLine("Jmeno: "+jmeno+"\t\t\tPro ukončení napiše: quit");
                Console.WriteLine("Prijmeni: "+prijmeni);
@@ -790,7 +794,7 @@ namespace vis
                Console.WriteLine("Ulice: "+ulice+ "\n");
                Console.WriteLine("Prosím zadejte telefon: ");
                telefon = Console.ReadLine();
-               if (telefon == "quit") return;
+               if (telefon == "quit") return false;
                do
                {                     
                    Console.Clear();
@@ -834,6 +838,7 @@ namespace vis
            
            ug.Insert();
            u.Id = ug.Id;
+           return true;
         }
         
         
