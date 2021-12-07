@@ -75,7 +75,7 @@ namespace vis
                        Console.WriteLine("Název: "+nazev+"\t\t\tPro ukončení napiše: quit");
                        Console.WriteLine("ISBN: "+isbn);
                        Console.WriteLine("Popis: "+Popis);
-                       Console.WriteLine("Cena: "+cena+ "\n");
+                       Console.WriteLine("Cena: "+cenaInt+ "\n");
                        Console.WriteLine("Prosím zadejte počet kusů na skladě: ");
                        pocet = Console.ReadLine();
                        if (pocet == "quit") return;
@@ -96,8 +96,8 @@ namespace vis
                    Console.WriteLine("Název: "+nazev+"\t\t\tPro ukončení napiše: quit");
                    Console.WriteLine("ISBN: "+isbn);
                    Console.WriteLine("Popis: "+Popis);
-                   Console.WriteLine("Cena: "+cena);
-                   Console.WriteLine("Kusy na skladě: "+pocet+ "\n");
+                   Console.WriteLine("Cena: "+cenaInt);
+                   Console.WriteLine("Kusy na skladě: "+pocetInt+ "\n");
          
                    Console.WriteLine("Jsou všechny údaje správně? y/n" );
                    potvrzeni = Console.ReadLine();
