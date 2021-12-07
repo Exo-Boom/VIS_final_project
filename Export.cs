@@ -34,7 +34,7 @@ namespace vis
         {
             try
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(Kniha));
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Kniha>));
                 
                 using var fileStream = new FileStream(filename, FileMode.Create);
 
