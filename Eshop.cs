@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using vis.Gateway;
 using vis.TableGateway;
 
@@ -78,37 +79,63 @@ namespace vis
                         
                             Interface.printKnihy(k);
 
-                            Console.WriteLine("\nPro export knih do XML - XML");
-                            Console.WriteLine("Pro export knih do CSV - CSV\n");
+                            Console.WriteLine("\nZadejte nazev souboru i s příponou pro export seznamu");
+                            Console.WriteLine("Podporované přípony (.xml,.csv)\n");
+                            
+                            
+                            
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("\nPro ukončení napište quit");
                             Console.ForegroundColor = ConsoleColor.White;
-                
-
+                            
+                            
                             s = Console.ReadLine();
                             
-                            if (s == "XML")
+                            string ext = Path.GetExtension(s);
+                            
+                            if (".xml" == ext)
                             {
                                 try
                                 {
-                                    string filename = "ListKnih.xml";
-                                Export.ExportVyberKnihToXml(filename,k);
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                string message = "Váš soubor XML "+filename+ " byl vyexportován.\n";
-                                Console.WriteLine(message);
-                                Console.ForegroundColor = ConsoleColor.White;
-                                System.Threading.Thread.Sleep(3000);
-                                break; 
-                                }catch (Exception e)
-                              {
-                                  Console.WriteLine(e);
-                                  throw;
-                              }
+                                    Export.ExportVyberKnihToXml(s,k);
+                                    
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    string message = "Váš soubor XML - "+ s + " byl vyexportován.\n";
+                                    Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
+                                    Console.WriteLine(message);
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                    System.Threading.Thread.Sleep(3000);
+                                    break; 
+                                }
+                                catch (Exception e)
+                                {
+                                    Console.WriteLine("Při exportu došlo k chybě");
+                                    System.Threading.Thread.Sleep(3000);
+                                }
                             }
                             
-                            if (s == "CSV")
+                            if (".csv" == ext)
                             {
-                                Export.ExportVyberKnihToCsv("ListKnih.csv",k);
+                                try
+                                {
+                                    Export.ExportVyberKnihToCsv("ListKnih.csv",k);
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    string message = "Váš soubor CSV - "+ s + " byl vyexportován.\n";
+                                    Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
+                                    Console.WriteLine(message);
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                    System.Threading.Thread.Sleep(3000);
+                                    break; 
+                                }
+                                catch (Exception e)
+                                {
+                                    Console.WriteLine("Při exportu došlo k chybě");
+                                    System.Threading.Thread.Sleep(3000);
+                                }
+                                
+                                
+                                
+                                
                                 break;
                             }
                             if (s == "quit")
