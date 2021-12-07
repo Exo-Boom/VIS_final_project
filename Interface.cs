@@ -189,7 +189,7 @@ namespace vis
                     {
                         if (int.Parse(s) == k[i].Id)
                         {
-                            printJedneObjednavkyUzivatele(k[i]);
+                            printJedneObjednavkyUzivatele(k[i],u);
                         }
                     }
                     
@@ -207,6 +207,7 @@ namespace vis
         {
             ObjednavkaTableGateway og = new ObjednavkaTableGateway();
             List<Objednavka> k = og.SelectAll();
+            
             string s = "";
             
             while(true){
@@ -224,7 +225,11 @@ namespace vis
                 }
                 
                 Console.WriteLine("\nPro detail objednavky napište její ID");
+                
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nPro ukončení napište quit");
+                Console.ForegroundColor = ConsoleColor.White;
+                
 
                 s = Console.ReadLine();
 
@@ -239,7 +244,7 @@ namespace vis
                     {
                         if (int.Parse(s) == k[i].Id)
                         {
-                            printJedneObjednavkyUzivatele(k[i]);
+                            printJedneObjednavkyUzivatele(k[i],u);
                         }
                     }
                     
@@ -253,18 +258,32 @@ namespace vis
             }
         }
         
-        public static void printJedneObjednavkyUzivatele(Objednavka o)
+        public static void printJedneObjednavkyUzivatele(Objednavka o,Uzivatel u)
         {
             KnihaTableGateway kgt = new KnihaTableGateway();
             List<Kniha> k = kgt.SelectAll();
-
+            Uzivatel kupujici = null;
+            
+            if (u.role_id == 1)
+            { 
+                UzivatelMapper m = new UzivatelMapper();
+                kupujici = m.SelectById(o.Uzivatel_id_u);
+            }
+            
             PolozkaObjednavkyMapper pom = new PolozkaObjednavkyMapper();
             List<PolozkaObjednavky> l = pom.SelectByObjednavka(o.Id);
             
             Console.Clear();
             Console.WriteLine("ID: "+o.Id);
             Console.WriteLine("Celková cena objednávky: "+o.Celkova_cena+" kč");
-            Console.WriteLine("Čas pořízení objednávky: "+o.Cas+"\n");
+            Console.WriteLine("Čas pořízení objednávky: "+o.Cas);
+
+            if (kupujici != null)
+            {
+                Console.WriteLine("Kupující: "+kupujici.Jmeno + " " +kupujici.Prijmeni+"\n");
+            }
+            
+            
             Console.WriteLine("Položky objednávky: \n");
             Console.WriteLine("Nazev\tISBN\t\tCena\tPočet");
            
