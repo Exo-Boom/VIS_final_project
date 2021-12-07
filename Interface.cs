@@ -297,8 +297,8 @@ namespace vis
             
             Console.WriteLine("Položky objednávky: \n");
             str.AppendLine("Položky objednávky: ");
-            Console.WriteLine("Nazev\tISBN\t\tCena\tPočet");
-            str.AppendLine("Nazev\tISBN\t\tCena\tPočet");
+            Console.WriteLine("Nazev\tISBN\t\tCena(kč)\tPočet");
+            str.AppendLine("Nazev\t\tISBN\t\tCena(kč)\tPočet");
            
             for (int i = 0; i < l.Count; i++)
             {
@@ -331,7 +331,7 @@ namespace vis
                 Export.ExportInvoiceTxt("Invoice.txt",str.ToString());
 
                 Console.ForegroundColor = ConsoleColor.Red;
-                string message = "Váš soubor XML - "+ s + " byl vyexportován.\n";
+                string message = "Váše faktura byla vyexportována.\n";
                 Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
                 Console.WriteLine(message);
                 Console.ForegroundColor = ConsoleColor.White;
