@@ -155,7 +155,7 @@ namespace vis
                     }
                     if (Option == 2)
                     {
-                        if (uda.vytvorObjednavku(u))
+                        if (uda.vytvorObjednavku(ref u))
                         {
                             
                         }

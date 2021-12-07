@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text.RegularExpressions;
 using vis.Gateway;
 using vis.Mapper;
 using vis.TableGateway;
@@ -12,8 +11,14 @@ namespace vis
     public class UserDataActions
     {
 
-        public bool vytvorObjednavku(Uzivatel u)
+        public bool vytvorObjednavku(ref Uzivatel u)
         {
+
+            if (u.role_id == 3)
+            {
+                AnonymTemporaryProfile(ref u);
+            }
+            
             ObjednavkaMapper om = new ObjednavkaMapper();
             List<(Kniha,int)> knihy = new List<(Kniha,int)>();
             int idk,pocet;
@@ -379,7 +384,133 @@ namespace vis
 
             
         }
+        
+        public void AnonymTemporaryProfile(ref Uzivatel u)
+        {
+            string jmeno;
+           string prijmeni;
+           string email;
+           string psc;
+           string mesto;
+           string zeme;
+           string ulice;
+           string telefon;
+           string potvrzeni; 
+           UzivatelGateway ug = new UzivatelGateway();
+           
+           UserActions ua = new UserActions();
+           bool ok = false;
+           
+           
+           do
+           {   Console.Clear();
+               Console.WriteLine("Pro ukončení napiše: quit");
+               Console.WriteLine("Prosím zadejte jméno: ");
+               jmeno = Console.ReadLine();
+               if (jmeno == "quit") return;
+               Console.Clear();
+               Console.WriteLine("Jmeno: "+jmeno +"\t\t\tPro ukončení napiše: quit"+ "\n");
+               Console.WriteLine("Prosím zadejte Prijmeni: ");
+               prijmeni = Console.ReadLine();
+               if (prijmeni == "quit") return;
+               do
+               {
+                   Console.Clear();
+                   Console.WriteLine("Jmeno: "+jmeno+"\t\t\tPro ukončení napiše: quit");
+                   Console.WriteLine("Prijmeni: "+prijmeni+ "\n");
+                   Console.WriteLine("Prosím zadejte email: ");
+                   email = Console.ReadLine();
+                       
+               } while (IsValidEmail(email) != true);
+               
+               Console.Clear();
+               Console.WriteLine("Jmeno: "+jmeno+"\t\t\tPro ukončení napiše: quit");
+               Console.WriteLine("Prijmeni: "+prijmeni);
+               Console.WriteLine("Email: "+email+ "\n");
+               Console.WriteLine("Prosím zadejte PSČ: ");
+               psc = Console.ReadLine();
+               if (psc == "quit") return;
+               Console.Clear();
+               Console.WriteLine("Jmeno: "+jmeno+"\t\t\tPro ukončení napiše: quit");
+               Console.WriteLine("Prijmeni: "+prijmeni);
+               Console.WriteLine("Email: "+email);
+               Console.WriteLine("PSČ: "+psc+ "\n");
+               Console.WriteLine("Prosím zadejte město: ");
+               mesto = Console.ReadLine();
+               if (mesto == "quit") return;
+               Console.Clear();
+               Console.WriteLine("Jmeno: "+jmeno+"\t\t\tPro ukončení napiše: quit");
+               Console.WriteLine("Prijmeni: "+prijmeni);
+               Console.WriteLine("Email: "+email);
+               Console.WriteLine("PSČ: "+psc);
+               Console.WriteLine("Město: "+mesto+ "\n");
+               Console.WriteLine("Prosím zadejte zemi: ");
+               zeme = Console.ReadLine();
+               if (zeme == "quit") return;
+               Console.Clear();
+               Console.WriteLine("Jmeno: "+jmeno+"\t\t\tPro ukončení napiše: quit");
+               Console.WriteLine("Prijmeni: "+prijmeni);
+               Console.WriteLine("Email: "+email);
+               Console.WriteLine("PSČ: "+psc);
+               Console.WriteLine("Město: "+mesto);
+               Console.WriteLine("Země: "+zeme+ "\n");
+               Console.WriteLine("Prosím zadejte ulici: ");
+               ulice = Console.ReadLine();
+               if (ulice == "quit") return;
+               Console.Clear();
+               Console.WriteLine("Jmeno: "+jmeno+"\t\t\tPro ukončení napiše: quit");
+               Console.WriteLine("Prijmeni: "+prijmeni);
+               Console.WriteLine("Email: "+email);
+               Console.WriteLine("PSČ: "+psc);
+               Console.WriteLine("Město: "+mesto);
+               Console.WriteLine("Země: "+zeme);
+               Console.WriteLine("Ulice: "+ulice+ "\n");
+               Console.WriteLine("Prosím zadejte telefon: ");
+               telefon = Console.ReadLine();
+               if (telefon == "quit") return;
+               do
+               {                     
+                   Console.Clear();
+                   Console.WriteLine("Jmeno: " + jmeno);
+                   Console.WriteLine("Prijmeni: " + prijmeni);
+                   Console.WriteLine("Email: " + email);
+                   Console.WriteLine("PSČ: " + psc);
+                   Console.WriteLine("Město: " + mesto);
+                   Console.WriteLine("Země: " + zeme);
+                   Console.WriteLine("Ulice: " + ulice);
+                   Console.WriteLine("Telefon: " + telefon + "\n");
+         
+                   Console.WriteLine("Jsou všechny údaje správně? y/n" );
+                   potvrzeni = Console.ReadLine();
 
+                   if (potvrzeni == "y")
+                   {
+                       ok = true;
+                       break;
+                   }
+
+                   if (potvrzeni == "n")
+                   {
+                       break;
+                   }
+               } while (true);
+
+           } while (ok != true);
+           
+           u.Jmeno = ug.jmeno= jmeno;
+           u.Prijmeni = ug.prijmeni= prijmeni;
+           u.Email = ug.email= email;
+           u.Adr.Psc = ug.Adr.Psc=psc;
+           u.Adr.Mesto = ug.Adr.Mesto=mesto;
+           u.Adr.Zeme = ug.Adr.Zeme=zeme;
+           u.Adr.Ulice = ug.Adr.Ulice=ulice;
+           u.Heslo = ug.heslo = UserActions.hash(""); 
+           u.Telefon = ug.telefon = telefon;
+            
+           ug.Insert();
+        }
+        
+        
         public static void PrehledObjednavky(List<(Kniha,int)> knihy, int id_obj)
         {
             ObjednavkaMapper o = new ObjednavkaMapper();
