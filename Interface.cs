@@ -71,7 +71,7 @@ namespace vis
             
         }
         
-        public static void EditUzivatelMenu(Uzivatel a)
+        public static void EditUzivatelMenu(Uzivatel a,int role = 0)
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;
@@ -94,7 +94,7 @@ namespace vis
             Console.Write("7"); Console.WriteLine(" - Pro změnu hesla");
             Console.Write("8"); Console.WriteLine(" - Pro změnu telefonu");
             Console.Write("9"); Console.WriteLine(" - Pro změnu ulice");
-            if (a.role_id == 1)
+            if (role == 1)
             {
                Console.Write("10"); Console.WriteLine(" - Pro změnu role"); 
             }

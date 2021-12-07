@@ -274,7 +274,7 @@ namespace vis
 
                     try
                     {
-                        Interface.EditUzivatelMenu(dirty);
+                        Interface.EditUzivatelMenu(dirty,1);
                         i = int.Parse(Console.ReadLine());
                         
                     switch (i)
@@ -352,7 +352,7 @@ namespace vis
                         }
                         case 10:
                         {
-                            if (dirty.role_id == 1)
+                            if (u.role_id == 1)
                             {
                                 while (true)
                                 {
