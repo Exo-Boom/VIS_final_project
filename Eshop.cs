@@ -238,6 +238,7 @@ namespace vis
                 catch (SqlException e)
                 {
                    Console.WriteLine(e);
+                   return;
                 }
             }
 

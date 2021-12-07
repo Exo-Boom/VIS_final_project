@@ -76,9 +76,9 @@ namespace vis.Gateway
         {
             ObjednavkaMapper om = new ObjednavkaMapper();
 
-            om.SelectByUser(Id);
             
-            List<Objednavka> list = new List<Objednavka>();
+            
+            List<Objednavka> list = om.SelectByUser(Id);
 
             for (int i = 0; i < list.Count; i++)
             {
