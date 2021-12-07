@@ -71,7 +71,7 @@ namespace vis
             
         }
         
-        public static void EditUzivatelMenu(Uzivatel a,int role = 0)
+        public static void EditUzivatelMenu(Uzivatel a,int role = 2)
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;
@@ -439,8 +439,7 @@ namespace vis
                         if (int.Parse(s) == k[i].Id)
                         {
                             edit = k[i];
-                            EditUzivatelMenu(edit);
-                            uda.EditUzivatel(ref edit);
+                            uda.EditUzivatel(ref edit,1);
                         }
                     }
                     

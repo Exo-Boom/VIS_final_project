@@ -254,7 +254,7 @@ namespace vis
             return k;
         }
         
-        public bool EditUzivatel(ref Uzivatel u)
+        public bool EditUzivatel(ref Uzivatel u,int role = 2)
         {
             
             Uzivatel dirty;
@@ -274,7 +274,7 @@ namespace vis
 
                     try
                     {
-                        Interface.EditUzivatelMenu(dirty,1);
+                        Interface.EditUzivatelMenu(dirty,role);
                         i = int.Parse(Console.ReadLine());
                         
                     switch (i)
@@ -352,7 +352,7 @@ namespace vis
                         }
                         case 10:
                         {
-                            if (u.role_id == 1)
+                            if (role == 1)
                             {
                                 while (true)
                                 {
