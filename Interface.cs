@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO.Enumeration;
+using System.Text;
 using vis.Gateway;
 using vis.Mapper;
 using vis.TableGateway;
@@ -108,7 +109,6 @@ namespace vis
             Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
             Console.WriteLine(message);
         }
-
 
         public void WrongInput()
         {
@@ -264,7 +264,9 @@ namespace vis
             List<Kniha> k = kgt.SelectAll();
             Uzivatel kupujici = null;
             string s = "";
+            StringBuilder str = new StringBuilder();
             
+
             if (u.role_id == 1)
             { 
                 UzivatelMapper m = new UzivatelMapper();
@@ -276,17 +278,27 @@ namespace vis
             
             Console.Clear();
             Console.WriteLine("ID: "+o.Id);
+            str.AppendLine("ID: "+o.Id);
             Console.WriteLine("Celková cena objednávky: "+o.Celkova_cena+" kč");
+            str.AppendLine("Celková cena objednávky: "+o.Celkova_cena+" kč");
             Console.WriteLine("Čas pořízení objednávky: "+o.Cas);
+            str.AppendLine("Čas pořízení objednávky: "+o.Cas);
 
             if (kupujici != null)
             {
                 Console.WriteLine("Kupující: "+kupujici.Jmeno + " " +kupujici.Prijmeni+"\n");
+                str.AppendLine("Kupující: "+kupujici.Jmeno + " " +kupujici.Prijmeni);
+            }
+            else
+            {
+                str.AppendLine("Kupující: "+u.Jmeno + " " +u.Prijmeni);
             }
             
             
             Console.WriteLine("Položky objednávky: \n");
+            str.AppendLine("Položky objednávky: ");
             Console.WriteLine("Nazev\tISBN\t\tCena\tPočet");
+            str.AppendLine("Nazev\tISBN\t\tCena\tPočet");
            
             for (int i = 0; i < l.Count; i++)
             {
@@ -294,7 +306,9 @@ namespace vis
                 {
                     if (l[i].Id_k == k[j].Id)
                     {
+                        str.AppendLine(k[j].Nazev + "\t" + k[j].Isbn + "\t" + l[i].cena + "\t" + l[i].pocet);
                         Console.WriteLine(k[j].Nazev + "\t" + k[j].Isbn + "\t" + l[i].cena + "\t" + l[i].pocet);
+                        
                     }
                 }
             }
@@ -314,7 +328,7 @@ namespace vis
             
             if (s == "tisk")
             {
-                
+                Export.ExportInvoiceTxt("Invoice.txt",str.ToString());
             }
             
         }

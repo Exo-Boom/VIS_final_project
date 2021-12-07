@@ -23,6 +23,7 @@ namespace vis
 
             List<Kniha> list = getKnihy();
             
+            
             while(true)
             { 
                 bool skip = false;
@@ -31,7 +32,6 @@ namespace vis
                 {
                     Console.WriteLine("Zadej ID knihy kterou chceš přidat do objednávky");
                     idk = int.Parse(Console.ReadLine());
-
 
                     for (int i = 0; i < list.Count; i++)
                     {
@@ -62,7 +62,7 @@ namespace vis
                                 potvrzeni = Console.ReadLine();
                                 
                                 if (potvrzeni == "0")
-                                { 
+                                {
                                     
                                     Console.WriteLine("\nCelkový dostupný počet knih na skladě: "+ knihy[i].Item1.Pocet);
                                     Console.WriteLine("Vámi objednaný počet v objednávce: "+ knihy[i].Item2);

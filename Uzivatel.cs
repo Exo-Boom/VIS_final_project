@@ -28,6 +28,7 @@
 
         public Uzivatel(int idU, string jmeno, string prijmeni, string email, string psc, string mesto, string zeme, string ulice, string heslo, string telefon, int roleId)
         {
+            Adr = new Adresa();
             Adr.Mesto = mesto;
             Adr.Zeme = zeme;
             Adr.Ulice = ulice;
@@ -43,6 +44,7 @@
 
         public Uzivatel(string jmeno, string prijmeni, string email, string psc, string mesto, string zeme, string ulice, string heslo, string telefon, int roleId)
         {
+            Adr = new Adresa();
             Adr.Mesto = mesto;
             Adr.Zeme = zeme;
             Adr.Ulice = ulice;

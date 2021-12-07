@@ -52,18 +52,17 @@ namespace vis
             
         }
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        public static void ExportInvoiceTxt(string f,string invoice)
+        {
+            
+            using StreamWriter file = new(f);
+            
+
+            file.Write(invoice);
+            
+            
+        }
+
     }
-    
-    
-    
     
 }
