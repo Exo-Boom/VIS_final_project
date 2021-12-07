@@ -394,6 +394,8 @@ namespace vis
            string ulice;
            string telefon;
            string potvrzeni; 
+           
+           
            UzivatelGateway ug = new UzivatelGateway();
            
            UserActions ua = new UserActions();
@@ -494,18 +496,20 @@ namespace vis
                } while (true);
 
            } while (ok != true);
-           
-           u.Jmeno = ug.jmeno= jmeno;
-           u.Prijmeni = ug.prijmeni= prijmeni;
-           u.Email = ug.email= email;
-           u.Adr.Psc = ug.Adr.Psc=psc;
-           u.Adr.Mesto = ug.Adr.Mesto=mesto;
-           u.Adr.Zeme = ug.Adr.Zeme=zeme;
-           u.Adr.Ulice = ug.Adr.Ulice=ulice;
-           u.Heslo = ug.heslo = UserActions.hash(""); 
-           u.Telefon = ug.telefon = telefon;
+
+           u = new Uzivatel(jmeno,prijmeni,email,psc,mesto,zeme,ulice,UserActions.hash(""),telefon,3);
+           ug.jmeno= jmeno;
+           ug.prijmeni= prijmeni;
+           ug.email= email;
+           ug.Adr.Psc=psc;
+           ug.Adr.Mesto=mesto;
+           ug.Adr.Zeme=zeme;
+           ug.Adr.Ulice=ulice;
+           ug.heslo = UserActions.hash(""); 
+           ug.telefon = telefon;
             
            ug.Insert();
+           u.Id = ug.Id;
         }
         
         
