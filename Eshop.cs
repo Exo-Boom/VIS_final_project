@@ -45,7 +45,7 @@ namespace vis
 
                         if (Option == 0)
                         {
-                            if (uda.Login(ref u))
+                            if (uda.login(ref u))
                             {
                                 I.LoginSuccess();
                                 break;
@@ -55,7 +55,7 @@ namespace vis
                         
                         if (Option == 1)
                         {
-                            if (uda.Register(ref u))
+                            if (uda.register(ref u))
                             {
                                 I.RegisterSuccess();
                             }

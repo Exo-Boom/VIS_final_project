@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using vis.Gateway;
 using vis.Mapper;
 using vis.TableGateway;
@@ -637,7 +639,7 @@ namespace vis
                         {
                             Console.WriteLine("Zadej nové heslo: ");
                             s = Console.ReadLine();
-                            s = UserActions.hash(s);
+                            s = hash(s);
                             dirty.Heslo = s; 
                             break;
                         }
@@ -714,9 +716,7 @@ namespace vis
            
            UzivatelGateway ug = new UzivatelGateway();
            
-           UserActions ua = new UserActions();
            bool ok = false;
-           
            
            do
            {   Console.Clear();
@@ -737,7 +737,7 @@ namespace vis
                    Console.WriteLine("Prosím zadejte email: ");
                    email = Console.ReadLine();
                        
-               } while (IsValidEmail(email) != true);
+               } while (IsValidEmail(email) != true && emailExists(email) == false);
                
                Console.Clear();
                Console.WriteLine("Jmeno: "+jmeno+"\t\t\tPro ukončení napiše: quit");
@@ -813,7 +813,7 @@ namespace vis
 
            } while (ok != true);
 
-           u = new Uzivatel(jmeno,prijmeni,email,psc,mesto,zeme,ulice,UserActions.hash(""),telefon,3);
+           u = new Uzivatel(jmeno,prijmeni,email,psc,mesto,zeme,ulice,hash(""),telefon,3);
            ug.jmeno= jmeno;
            ug.prijmeni= prijmeni;
            ug.email= email;
@@ -821,7 +821,7 @@ namespace vis
            ug.Adr.Mesto=mesto;
            ug.Adr.Zeme=zeme;
            ug.Adr.Ulice=ulice;
-           ug.heslo = UserActions.hash(""); 
+           ug.heslo = hash(""); 
            ug.telefon = telefon;
            ug.roleId = 2;
            
@@ -1004,11 +1004,11 @@ namespace vis
             }
         }
 
-       public bool Login(ref Uzivatel a)
+       public bool login(ref Uzivatel a)
        {
            string email, password;
 
-           UserActions ua = new UserActions();
+           
            do
            {
                Console.Clear();
@@ -1022,7 +1022,7 @@ namespace vis
            Console.WriteLine("Prosím zadejte heslo: ");
            password = Console.ReadLine();
            
-            a = ua.Login(email,password);
+            a = Login(email,password);
             
            if (a != null)
            {
@@ -1032,7 +1032,7 @@ namespace vis
            return false;
        }
         
-       public bool Register(ref Uzivatel a)
+       public bool register(ref Uzivatel a)
        {
            string jmeno;
            string prijmeni;
@@ -1045,7 +1045,7 @@ namespace vis
            string telefon;
            string potvrzeni; 
            
-           UserActions ua = new UserActions();
+           
            bool ok = false;
            
            
@@ -1068,7 +1068,7 @@ namespace vis
                    Console.WriteLine("Prosím zadejte email: ");
                    email = Console.ReadLine();
                        
-               } while (IsValidEmail(email) != true);
+               } while (IsValidEmail(email) != true && emailExists(email) == false);
                
                Console.Clear();
                Console.WriteLine("Jmeno: "+jmeno+"\t\t\tPro ukončení napiše: quit");
@@ -1165,7 +1165,7 @@ namespace vis
 
            } while (ok != true);
            
-           ok = ua.Register(jmeno,prijmeni,email,psc,mesto,zeme,ulice,heslo,telefon);
+           ok = Register(jmeno,prijmeni,email,psc,mesto,zeme,ulice,heslo,telefon);
             
            if (ok == true)
            {
@@ -1175,6 +1175,90 @@ namespace vis
            return false;
        }
         
+       public Uzivatel Login(string email, string heslo)
+       {
+           UzivatelMapper um = new UzivatelMapper();
+            
+           try
+           {
+               Uzivatel logged = um.SelectByEmail(email);
+                
+               if (logged.Heslo == hash(heslo))
+               {
+                   return logged;
+               }
+           }
+           catch (Exception e)
+           {
+               Console.WriteLine(e);
+               return null;
+           }
+           return null;
+       }
+        
+        
+       public bool Register(string jmeno, string prijmeni, string email, string psc, string mesto, string zeme, string ulice, string heslo, string telefon, int role = 2)
+       {
+           UzivatelGateway ug = new UzivatelGateway();
+
+           heslo = hash(heslo);
+
+           try
+           {
+               ug.jmeno = jmeno;
+               ug.prijmeni = prijmeni;
+               ug.email = email;
+               ug.Adr.Psc = psc;
+               ug.Adr.Mesto = mesto;
+               ug.Adr.Zeme = zeme;
+               ug.Adr.Ulice = ulice;
+               ug.heslo = heslo;
+               ug.telefon = telefon;
+               ug.roleId = role;
+               ug.Insert();
+           }
+           catch (SqlException e)
+           {
+               Console.WriteLine(e);
+               return false;
+           }
+
+           return true;
+       }
+        
+       public static String hash(string value)
+       {
+           StringBuilder Sb = new StringBuilder();
+
+           using (var hash = SHA256.Create())            
+           {
+               Encoding enc = Encoding.UTF8;
+               byte[] result = hash.ComputeHash(enc.GetBytes(value));
+
+               foreach (byte b in result)
+                   Sb.Append(b.ToString("x2"));
+           }
+
+           return Sb.ToString();
+       }
+       public static bool emailExists(string value)
+       {
+           UzivatelTableGateway u = new UzivatelTableGateway();
+
+           List<Uzivatel> k = u.SelectAll();
+
+           for (int i = 0; i < k.Count; i++)
+           {
+               if (k[i].Email == value)
+               {
+                   return true;
+               }
+           }
+
+           return false;
+
+       }
+       
     }
     
 }
