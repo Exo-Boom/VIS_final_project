@@ -367,11 +367,19 @@ namespace vis
                 {
                     role.Id = k[i].role_id;
                     role.SelectById();
-                    Console.WriteLine(k[i].Id+"\t" + k[i].Jmeno+" " + k[i].Prijmeni + "\t" + k[i].Email +"\t" + role.nazev + "\t" + k[i].Heslo);
-
+                    if (u.Id == k[i].Id)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(k[i].Id+"\t" + k[i].Jmeno+" " + k[i].Prijmeni + "\t" + k[i].Email +"\t" + role.nazev + "\t" + k[i].Heslo);
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    else
+                    {
+                        Console.WriteLine(k[i].Id+"\t" + k[i].Jmeno+" " + k[i].Prijmeni + "\t" + k[i].Email +"\t" + role.nazev + "\t" + k[i].Heslo);
+                    }
                 }
                 
-                Console.WriteLine("\nPro detail uživatele napište její ID");
+                Console.WriteLine("\nPro detail uživatele napište jeho ID");
                 
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nPro ukončení napište quit");

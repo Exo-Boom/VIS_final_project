@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using vis.Gateway;
 using vis.TableGateway;
 
@@ -71,13 +72,35 @@ namespace vis
 
                     if (Option == 1)
                     {
-                        KnihaTableGateway kg = new KnihaTableGateway();
+                        while (true){
+                            KnihaTableGateway kg = new KnihaTableGateway();
+                            List<Kniha> k = kg.SelectAll();
+                        
+                            Interface.printKnihy(k);
 
-                        Interface.printKnihy(kg.SelectAll());
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Pokračujte stisknutím ENTER");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.ReadLine();
+                            Console.WriteLine("\nPro export knih do XML - XML");
+                            Console.WriteLine("Pro export knih do CSV - CSV\n");
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("\nPro ukončení napište quit");
+                            Console.ForegroundColor = ConsoleColor.White;
+                
+
+                            s = Console.ReadLine();
+                            
+                            if (s == "XML")
+                            {
+                                Export.ExportVyberKnihToCsv("csv.csv",k);
+                            }
+                            if (s == "CSV")
+                            {
+                                Export.ExportVyberKnihToXml("xml.xml",k);
+                            }
+                            if (s == "quit")
+                            {
+                                break;
+                            }
+
+                        }
                     }
                     if (Option == 2)
                     {
