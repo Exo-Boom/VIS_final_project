@@ -55,6 +55,21 @@ namespace vis
             System.Threading.Thread.Sleep(3000);
             
         }
+
+        public static void LoggedAsAnonym()
+        {
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                string message = "Pouze pro registrované uživatele!";
+                Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
+                Console.WriteLine(message);
+                message = "Pokud chcete pokračovat přihlašte se, nebo se zaregistrujte!\n";
+                Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
+                Console.WriteLine(message);
+                Console.ForegroundColor = ConsoleColor.White;
+                System.Threading.Thread.Sleep(3000);
+            
+        }
         
         public static void EditUzivatelMenu(Uzivatel a)
         {

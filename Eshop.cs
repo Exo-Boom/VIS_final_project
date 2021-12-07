@@ -170,11 +170,23 @@ namespace vis
                     }
                     if (Option == 3)
                     {
-                        Interface.printObjednavkyUzivatele(u);
+                        if (u.role_id != 3)
+                        {
+                            Interface.printObjednavkyUzivatele(u);
+                        }
+                        else
+                        {
+                            Interface.LoggedAsAnonym();
+                        }
+                        
                     }
                     if (Option == 4)
                     {
-                        
+                        if (u.role_id == 3)
+                        {
+                            Interface.LoggedAsAnonym();
+                            continue;
+                        }
                         if (uda.EditUzivatel(ref u))
                         {
                             continue;
