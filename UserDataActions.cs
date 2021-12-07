@@ -1264,7 +1264,6 @@ namespace vis
 
            for (int i = 0; i < k.Count; i++)
            {
-               Console.WriteLine("Email: " + value + " X " + k[i].Email);               
                if (k[i].Email == value)
                {
                    return true;
