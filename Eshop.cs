@@ -19,6 +19,8 @@ namespace vis
             
             while (true)
             {
+                u = new Uzivatel("Anonymous","","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous",3);
+
                 while (true)
                 {
                     Console.Clear();
@@ -187,7 +189,7 @@ namespace vis
                             Interface.LoggedAsAnonym();
                             continue;
                         }
-                        if (uda.EditUzivatel(ref u))
+                        if (uda.EditUzivatel(ref u,u.role_id))
                         {
                             continue;
                         }
