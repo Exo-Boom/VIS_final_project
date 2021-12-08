@@ -70,7 +70,7 @@ namespace vis
                         if (Option == 3)
                         {
                             I.resetPassword();
-                            break;
+                            continue;
                         }
                         if (Option == 4)
                         {

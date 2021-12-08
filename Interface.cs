@@ -478,7 +478,7 @@ namespace vis
             while (true)
             {
                 
-            
+                Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\t\t\tPro ukončení napiše: quit");
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -488,7 +488,7 @@ namespace vis
                 s = Console.ReadLine();
                 
                 
-                if (s == "quit")
+                if (s == "quit" || jmeno == "quit"|| prijmeni == "quit")
                 {
                     return;
                 }
