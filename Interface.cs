@@ -122,8 +122,11 @@ namespace vis
             Console.WriteLine(message);
             message = "2 - Anonymní režim";
             Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
+            Console.WriteLine(message);
+            message = "3 - Zapomenuté heslo";
+            Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
             Console.WriteLine(message+"\n");
-            message = "3 - Konec";
+            message = "4 - Konec";
             Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
             Console.WriteLine(message);
         }
@@ -459,18 +462,99 @@ namespace vis
                             uda.EditUzivatel(ref edit,1);
                         }
                     }
-                    
-
                 }
                 catch (FormatException)
                 {
-                    
                     continue;
                 }
             }
         }
-        
-        
+
+        public void resetPassword()
+        {
+            string s = "",jmeno = "",prijmeni ="";
+            Uzivatel u = null;
+            UzivatelMapper map = null;
+            while (true)
+            {
+                
+            
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\t\t\tPro ukončení napiše: quit");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("\nZadejte email vašeho účtu: ");
+                Console.ForegroundColor = ConsoleColor.White;
+                
+                s = Console.ReadLine();
+                
+                
+                if (s == "quit")
+                {
+                    return;
+                }
+
+                if (UserDataActions.IsValidEmail(s))
+                {
+                    if (UserDataActions.emailExists(s))
+                    {
+                        map = new UzivatelMapper();
+                        u = map.SelectByEmail(s);
+                    }
+                    else
+                    {
+                        Console.Clear();
+
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\nTento email neexistuje.");
+                        Console.ForegroundColor = ConsoleColor.White;
+            
+                        System.Threading.Thread.Sleep(4000);
+                        break;
+                    }
+                }
+                else
+                {
+                    Console.Clear();
+
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\nEmail je ve spatnem tvaru...");
+                    Console.ForegroundColor = ConsoleColor.White;
+            
+                    System.Threading.Thread.Sleep(4000);
+                    continue;
+                }
+
+                if (u != null)
+                {
+                    Console.WriteLine("Zadejte jméno, které jste zadali při registraci (včetně diakritiky)");
+                    jmeno = Console.ReadLine();
+                    if (jmeno == u.Jmeno)
+                    {
+                        
+                        Console.WriteLine("Zadejte příjmení, které jste zadali při registraci (včetně diakritiky)");
+                        prijmeni = Console.ReadLine();
+                        
+                        if (prijmeni == u.Prijmeni)
+                        {
+                            Console.WriteLine("Zadejte nové heslo: ");
+
+                            s = Console.ReadLine();
+                            
+                            map.Update(u.Id,u.Jmeno,u.Prijmeni,u.Email,u.Adr.Psc,u.Adr.Mesto,u.Adr.Zeme,u.Adr.Ulice,UserDataActions.hash(s),u.Telefon,u.role_id);
+                            return;
+                        }
+                        continue;
+                        
+                    }
+
+                    continue;
+                }
+                
+            
+            }
+            
+            
+        }
         
         
     }

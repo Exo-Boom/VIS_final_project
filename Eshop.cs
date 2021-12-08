@@ -69,6 +69,11 @@ namespace vis
                         
                         if (Option == 3)
                         {
+                            I.resetPassword();
+                            break;
+                        }
+                        if (Option == 4)
+                        {
                             Console.Clear();
                             return;
                         }

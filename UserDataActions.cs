@@ -379,6 +379,10 @@ namespace vis
 
                                     if (knihy[i].Item1.Pocet >= (knihy[i].Item2 + pocet))
                                     {
+                                        if (pocet < 0)
+                                        {
+                                            pocet *= -1;
+                                        }
                                         knihy[i] = (knihy[i].Item1,knihy[i].Item2 + pocet);
                                         break;
                                     }
@@ -851,7 +855,7 @@ namespace vis
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Objednavka ID: "+a.Id);
-            Console.WriteLine("Celkova cena objednavky: " + a.Celkova_cena);
+            Console.WriteLine("Celkova cena objednavky: " + a.Celkova_cena + " kč");
             Console.WriteLine("Objednavka vytvořena : "+a.Cas + "\n");
             Console.ForegroundColor = ConsoleColor.White;
             
@@ -1005,7 +1009,7 @@ namespace vis
             
         }
         
-        public bool IsValidEmail(string email)
+        public static bool IsValidEmail(string email)
         {
             try {
                 var addr = new System.Net.Mail.MailAddress(email);
