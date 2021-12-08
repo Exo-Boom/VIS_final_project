@@ -488,7 +488,7 @@ namespace vis
                 s = Console.ReadLine();
                 
                 
-                if (s == "quit" || jmeno == "quit"|| prijmeni == "quit")
+                if (s == "quit")
                 {
                     return;
                 }

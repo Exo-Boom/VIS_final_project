@@ -38,7 +38,6 @@ namespace vis
                         }
                         catch (FormatException)
                         {
-                            Console.ReadLine();
                             continue;
                         }
 
@@ -243,7 +242,6 @@ namespace vis
                 catch (SqlException e)
                 {
                    Console.WriteLine(e);
-                   return;
                 }
             }
 
