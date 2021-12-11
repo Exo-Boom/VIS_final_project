@@ -120,7 +120,7 @@ namespace vis
                                         Export.ExportVyberKnihToXml(s,k);
                                         
                                         Console.ForegroundColor = ConsoleColor.Red;
-                                        string message = "Váš soubor XML - "+ s + " byl vyexportován.\n";
+                                        string message = "Váš XML soubor - "+ s + " byl vyexportován.\n";
                                         Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
                                         Console.WriteLine(message);
                                         Console.ForegroundColor = ConsoleColor.White;
@@ -140,7 +140,7 @@ namespace vis
                                     {
                                         Export.ExportVyberKnihToCsv(s,k);
                                         Console.ForegroundColor = ConsoleColor.Red;
-                                        string message = "Váš soubor CSV - "+ s + " byl vyexportován.\n";
+                                        string message = "Váš CSV soubor - "+ s + " byl vyexportován.\n";
                                         Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
                                         Console.WriteLine(message);
                                         Console.ForegroundColor = ConsoleColor.White;
@@ -152,11 +152,6 @@ namespace vis
                                         Console.WriteLine("Při exportu došlo k chybě");
                                         System.Threading.Thread.Sleep(3000);
                                     }
-                                    
-                                    
-                                    
-                                    
-                                    break;
                                 }
                                 if (s == "quit")
                                 {

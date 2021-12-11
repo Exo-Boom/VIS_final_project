@@ -97,7 +97,11 @@ namespace vis
                     {
                         if (int.Parse(s) == k[i].Id)
                         {
+                            
                             kniha.Id = k[i].Id;
+                            kniha.Nazev = k[i].Nazev;
+                            kniha.ISBN = k[i].Isbn;
+                            
                             kniha.Delete();
 
                             Interface.deleteSuccess();
@@ -106,7 +110,6 @@ namespace vis
                         }
                     }
                     
-
                 }
                 catch (FormatException)
                 {
@@ -505,7 +508,6 @@ namespace vis
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.ReadLine();
                         continue;
-
                     }
                     if (potvrzeni == "0")
                     {

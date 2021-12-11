@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using vis.Mapper;
 
 namespace vis.Gateway
 {
@@ -57,20 +58,36 @@ namespace vis.Gateway
         }
         public void Delete()
         {
-            SqlConnection conn = new SqlConnection(Database.connectionString);
-            conn.Open();
+            PolozkaObjednavkyMapper mm = new PolozkaObjednavkyMapper();
+            List<PolozkaObjednavky> po = mm.SelectByKniha(Id);
             
-            var dotaz = "DELETE FROM Kniha WHERE id_k = @id_k"; 
-            SqlCommand com = new SqlCommand(dotaz,conn);
-            
-            com.Parameters.Add(new SqlParameter("@id_k", SqlDbType.Int)).Value = Id;
+            if (po != null)
+            {
+                pocet = 0;
+                cena = 0;
+                Popis = "Tato kniha již není v prodeji";
+                Update();
+            }
+            else
+            {
+               SqlConnection conn = new SqlConnection(Database.connectionString);
+               conn.Open();
+               
+               var dotaz = "DELETE FROM Kniha WHERE id_k = @id_k"; 
+               SqlCommand com = new SqlCommand(dotaz,conn);
+               
+               com.Parameters.Add(new SqlParameter("@id_k", SqlDbType.Int)).Value = Id;
+   
+               com.Prepare();
+               
+               com.ExecuteNonQuery();
+               
+               conn.Close(); 
+            }
 
-            com.Prepare();
-            
-            com.ExecuteNonQuery();
-            
-            conn.Close();
         }
+       
+        
         
         public void SelectById()
         {
