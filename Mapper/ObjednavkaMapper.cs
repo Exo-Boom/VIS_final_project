@@ -88,9 +88,10 @@ namespace vis.Mapper
         
         public int Delete(int id)
         {
+            int number = 0;
             PolozkaObjednavkyMapper p = new PolozkaObjednavkyMapper();
             
-            p.Delete(id);
+            number = p.Delete(id);
             
             SqlConnection conn = new SqlConnection(Database.connectionString);
             conn.Open();            
@@ -102,7 +103,7 @@ namespace vis.Mapper
             
             com.Prepare();
 
-            int number = com.ExecuteNonQuery();
+             number += com.ExecuteNonQuery();
             
             conn.Close();
             return number;

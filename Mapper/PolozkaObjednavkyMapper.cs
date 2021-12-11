@@ -59,7 +59,7 @@ namespace vis.Mapper
             return list;
         }
         
-        public void Delete(int id)
+        public int Delete(int id)
         {
             SqlConnection conn = new SqlConnection(Database.connectionString);
             conn.Open();
@@ -70,9 +70,10 @@ namespace vis.Mapper
             com.Parameters.Add(new SqlParameter("@Objednavka_id_obj", SqlDbType.Int)).Value = id;
             com.Prepare();
             
-            com.ExecuteNonQuery();
+            int number = com.ExecuteNonQuery();
             
             conn.Close();
+            return number;
         }
         
     }
