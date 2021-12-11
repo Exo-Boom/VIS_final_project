@@ -103,7 +103,7 @@ namespace vis.Mapper
             
             com.Prepare();
 
-             number += com.ExecuteNonQuery();
+            number += com.ExecuteNonQuery();
             
             conn.Close();
             return number;

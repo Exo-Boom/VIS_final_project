@@ -80,7 +80,7 @@ namespace vis.Gateway
 
             for (int i = 0; i < list.Count; i++)
             {
-                number+=om.Delete(list[i].Id);
+                number += om.Delete(list[i].Id);
             }
             
             SqlConnection conn = new SqlConnection(Database.connectionString);
@@ -93,7 +93,7 @@ namespace vis.Gateway
 
             com.Prepare();
                 
-            number = com.ExecuteNonQuery();
+            number =+ com.ExecuteNonQuery();
             
             conn.Close();
             return number;
