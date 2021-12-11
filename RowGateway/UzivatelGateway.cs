@@ -93,7 +93,7 @@ namespace vis.Gateway
 
             com.Prepare();
                 
-            number =+ com.ExecuteNonQuery();
+            number += com.ExecuteNonQuery();
             
             conn.Close();
             return number;
