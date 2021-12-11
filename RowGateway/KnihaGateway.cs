@@ -61,7 +61,7 @@ namespace vis.Gateway
             PolozkaObjednavkyMapper mm = new PolozkaObjednavkyMapper();
             List<PolozkaObjednavky> po = mm.SelectByKniha(Id);
             
-            if (po != null)
+            if (po[0] != null)
             {
                 pocet = 0;
                 cena = 0;
