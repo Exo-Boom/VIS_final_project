@@ -114,19 +114,19 @@ namespace vis
             message = "Prosím zvolte zda se chcete přihlásit, nebo registrovat";
             Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
             Console.WriteLine(message+"\n");
-            message = "0 - Pro přihlášení";
+            message = "1 - Pro přihlášení";
             Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
             Console.WriteLine(message);
-            message = "1 - Pro registraci";
+            message = "2 - Pro registraci";
             Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
             Console.WriteLine(message);
-            message = "2 - Anonymní režim";
+            message = "3 - Anonymní režim";
             Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
             Console.WriteLine(message);
-            message = "3 - Zapomenuté heslo";
+            message = "4 - Zapomenuté heslo";
             Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
             Console.WriteLine(message+"\n");
-            message = "4 - Konec";
+            message = "0 - Konec";
             Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
             Console.WriteLine(message);
         }

@@ -41,8 +41,7 @@ namespace vis
                             continue;
                         }
 
-
-                        if (Option == 0)
+                        if (Option == 1)
                         {
                             if (uda.login(ref u))
                             {
@@ -52,7 +51,7 @@ namespace vis
 
                         }
                         
-                        if (Option == 1)
+                        if (Option == 2)
                         {
                             if (uda.register(ref u))
                             {
@@ -60,18 +59,18 @@ namespace vis
                             }
                         }
                         
-                        if (Option == 2)
+                        if (Option == 3)
                         {
                             I.LoginSuccess();
                             break;
                         }
                         
-                        if (Option == 3)
+                        if (Option == 4)
                         {
                             I.resetPassword();
                             continue;
                         }
-                        if (Option == 4)
+                        if (Option == 0)
                         {
                             Console.Clear();
                             return;
