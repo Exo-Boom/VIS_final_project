@@ -51,7 +51,7 @@ namespace vis.Gateway
             conn.Close();
         }
         
-        public void Delete()
+        public int Delete()
         {
             SqlConnection conn = new SqlConnection(Database.connectionString);
             conn.Open();
@@ -62,9 +62,10 @@ namespace vis.Gateway
             com.Parameters.Add(new SqlParameter("@Objednavka_id_obj", SqlDbType.Int)).Value = Id;
             com.Prepare();
             
-            com.ExecuteNonQuery();
+            int number = com.ExecuteNonQuery();
             
             conn.Close();
+            return number;
         }
     }
 }

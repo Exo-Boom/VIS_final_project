@@ -51,7 +51,7 @@ namespace vis.Gateway
             conn.Close();
         }
 
-        public void Delete()
+        public int Delete()
         {
             SqlConnection conn = new SqlConnection(Database.connectionString);
             conn.Open();
@@ -62,10 +62,10 @@ namespace vis.Gateway
             com.Parameters.Add(new SqlParameter("@id_r", SqlDbType.Int)).Value = Id;
 
             com.Prepare();
-
-            com.ExecuteNonQuery();
-
+            int number = com.ExecuteNonQuery();
+            
             conn.Close();
+            return number;
         }
         
         public void SelectById()

@@ -72,17 +72,15 @@ namespace vis.Gateway
             conn.Close();
         }
         
-        public void Delete()
+        public int Delete()
         {
             ObjednavkaMapper om = new ObjednavkaMapper();
-
-            
-            
+            int number=0;
             List<Objednavka> list = om.SelectByUser(Id);
 
             for (int i = 0; i < list.Count; i++)
             {
-                om.Delete(list[i].Id);
+                number+=om.Delete(list[i].Id);
             }
             
             SqlConnection conn = new SqlConnection(Database.connectionString);
@@ -94,10 +92,11 @@ namespace vis.Gateway
             com.Parameters.Add(new SqlParameter("@id_u", SqlDbType.Int)).Value = Id;
 
             com.Prepare();
-            
-            com.ExecuteNonQuery();
+                
+            number = com.ExecuteNonQuery();
             
             conn.Close();
+            return number;
         }
 
     }

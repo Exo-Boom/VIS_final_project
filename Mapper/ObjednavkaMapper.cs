@@ -86,7 +86,7 @@ namespace vis.Mapper
             conn.Close();
         }
         
-        public void Delete(int id)
+        public int Delete(int id)
         {
             PolozkaObjednavkyMapper p = new PolozkaObjednavkyMapper();
             
@@ -102,9 +102,10 @@ namespace vis.Mapper
             
             com.Prepare();
 
-            com.ExecuteNonQuery();
+            int number = com.ExecuteNonQuery();
             
             conn.Close();
+            return number;
         }
 
         public Objednavka SelectById(int id)

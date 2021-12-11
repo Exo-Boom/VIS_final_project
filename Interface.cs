@@ -175,7 +175,8 @@ namespace vis
             Console.WriteLine("ID\tKniha\tISBN\t\tCena\t\tDostupny Počet");
             for (int i = 0; i < k.Count; i++)
             {
-                Console.WriteLine(k[i].Id+"\t"+k[i].Nazev+"\t"+k[i].Isbn+"\t"+k[i].Cena+"\t\t"+k[i].Pocet);
+                if(k[i].Cena != 0)
+                    Console.WriteLine(k[i].Id+"\t"+k[i].Nazev+"\t"+k[i].Isbn+"\t"+k[i].Cena+"\t\t"+k[i].Pocet);
             }
         }
 
@@ -390,12 +391,13 @@ namespace vis
             Console.WriteLine("\n0 - Pro opuštění editace");
             Console.ForegroundColor = ConsoleColor.White;
         }
-        public static void deleteSuccess()
+        public static void deleteSuccess(int n)
         {
             Console.Clear();
 
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\nPoložka byla úspěšně smazána.");
+            Console.WriteLine("Celkový počet položek smazaných z databáze je: "+n);
             Console.ForegroundColor = ConsoleColor.White;
             
             System.Threading.Thread.Sleep(4000);

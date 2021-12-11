@@ -51,9 +51,9 @@ namespace vis
                     {
                         if (int.Parse(s) == k[i].Id)
                         {
-                            objMapper.Delete(k[i].Id);
+                            int n = objMapper.Delete(k[i].Id);
 
-                            Interface.deleteSuccess();
+                            Interface.deleteSuccess(n);
                             
                             return;
                         }
@@ -102,9 +102,9 @@ namespace vis
                             kniha.Nazev = k[i].Nazev;
                             kniha.ISBN = k[i].Isbn;
                             
-                            kniha.Delete();
+                            int n = kniha.Delete();
 
-                            Interface.deleteSuccess();
+                            Interface.deleteSuccess(n);
                             
                             return;
                         }
@@ -121,11 +121,12 @@ namespace vis
 
         public void removeUser(Uzivatel u)
         {
-            UzivatelGateway Uzi = new UzivatelGateway();
+            UzivatelGateway uzi = new UzivatelGateway();
             UzivatelTableGateway utg = new UzivatelTableGateway();
             List<Uzivatel> k = utg.SelectAll();
             string p = "";
             RoleGateway role = new RoleGateway();
+            
             
             while (true)
             {          
@@ -189,10 +190,11 @@ namespace vis
                                 }
                                 
                             }
-                            Uzi.Id = k[i].Id;
-                            Uzi.Delete();
+                            uzi.Id = k[i].Id;
+                            
+                            int n = uzi.Delete();
 
-                            Interface.deleteSuccess();
+                            Interface.deleteSuccess(n);
                             return;
 
                         }
@@ -346,7 +348,7 @@ namespace vis
 
                     for (int i = 0; i < list.Count; i++)
                     {
-                        if (list[i].Id == idk)
+                        if (list[i].Id == idk && list[i].Cena != 0)
                         {
                             Existing = true;
                             break;
@@ -444,7 +446,7 @@ namespace vis
                                 Console.WriteLine("Zadej pocet objednavanych knih: ");
                                 pocet = int.Parse(Console.ReadLine());
 
-                                if (list[i].Pocet >= pocet)
+                                if (list[i].Pocet >= pocet && pocet >= 0)
                                 {
                                     knihy.Add((list[i], pocet));
                                     break;

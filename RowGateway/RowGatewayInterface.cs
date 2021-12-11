@@ -5,7 +5,7 @@
         int Id{get; set;}
         
         void Insert();
-        void Delete();
+        int Delete();
         void Update();
     }
 }

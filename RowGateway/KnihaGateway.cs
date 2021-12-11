@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using vis.Mapper;
 
 namespace vis.Gateway
@@ -56,17 +57,18 @@ namespace vis.Gateway
             
             conn.Close();
         }
-        public void Delete()
+        public int Delete()
         {
             PolozkaObjednavkyMapper mm = new PolozkaObjednavkyMapper();
             List<PolozkaObjednavky> po = mm.SelectByKniha(Id);
             
-            if (po[0] != null)
+            if (po.Any())
             {
                 pocet = 0;
                 cena = 0;
                 Popis = "Tato kniha již není v prodeji";
                 Update();
+                return 0;
             }
             else
             {
@@ -80,9 +82,10 @@ namespace vis.Gateway
    
                com.Prepare();
                
-               com.ExecuteNonQuery();
-               
-               conn.Close(); 
+               int number = com.ExecuteNonQuery();
+            
+               conn.Close();
+               return number;
             }
 
         }
