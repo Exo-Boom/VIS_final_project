@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace vis.TableGateway
+namespace vis.Mapper
 {
-    public class RoleTableGateway
+    public class RoleMapper
     {
         public List<Role> SelectAll()
         {

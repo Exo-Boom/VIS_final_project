@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.IO.Enumeration;
 using System.Text;
 using vis.Gateway;
 using vis.Mapper;
-using vis.TableGateway;
 
 namespace vis
 {
@@ -233,7 +230,7 @@ namespace vis
         
         public static void printAllObjednavky(Uzivatel u)
         {
-            ObjednavkaTableGateway og = new ObjednavkaTableGateway();
+            ObjednavkaMapper og = new ObjednavkaMapper();
             List<Objednavka> k = og.SelectAll();
             
             string s = "";
@@ -288,7 +285,7 @@ namespace vis
         
         public static void printJedneObjednavkyUzivatele(Objednavka o,Uzivatel u)
         {
-            KnihaTableGateway kgt = new KnihaTableGateway();
+            KnihaMapper kgt = new KnihaMapper();
             List<Kniha> k = kgt.SelectAll();
             Uzivatel kupujici = null;
             string s = "";
@@ -406,7 +403,7 @@ namespace vis
         
         public static void printAllUsers(Uzivatel u)
         {
-            UzivatelTableGateway utg = new UzivatelTableGateway();
+            UzivatelMapper utg = new UzivatelMapper();
             List<Uzivatel> k = utg.SelectAll();
             UserDataActions uda = new UserDataActions();
             Uzivatel edit = null;

@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using vis.Gateway;
 using vis.Mapper;
-using vis.TableGateway;
+
 
 namespace vis
 {
@@ -14,9 +14,8 @@ namespace vis
     {
         public void removeObjednavka(Uzivatel u)
         {
-            ObjednavkaTableGateway otg = new ObjednavkaTableGateway();
             ObjednavkaMapper objMapper = new ObjednavkaMapper();
-            List<Objednavka> k = otg.SelectAll();
+            List<Objednavka> k = objMapper.SelectAll();
             
 
             string s = "";
@@ -70,7 +69,7 @@ namespace vis
         }
         public void removeKniha()
         {
-            KnihaTableGateway ktg = new KnihaTableGateway();
+            KnihaMapper ktg = new KnihaMapper();
             KnihaGateway kniha = new KnihaGateway();
             List<Kniha> k = ktg.SelectAll();
             
@@ -122,7 +121,7 @@ namespace vis
         public void removeUser(Uzivatel u)
         {
             UzivatelGateway uzi = new UzivatelGateway();
-            UzivatelTableGateway utg = new UzivatelTableGateway();
+            UzivatelMapper utg = new UzivatelMapper();
             List<Uzivatel> k = utg.SelectAll();
             string p = "";
             RoleGateway role = new RoleGateway();
@@ -560,7 +559,7 @@ namespace vis
         
         public List<Kniha> getKnihy()
         {
-            KnihaTableGateway kg = new KnihaTableGateway();
+            KnihaMapper kg = new KnihaMapper();
             List<Kniha> k = new List<Kniha>();
             try
             {
@@ -972,7 +971,7 @@ namespace vis
         
         public void adminKnihy(Uzivatel u)
         {
-            KnihaTableGateway ktg = new KnihaTableGateway();
+            KnihaMapper ktg = new KnihaMapper();
             List<Kniha> k = ktg.SelectAll();
             string s = "";
             
@@ -1271,7 +1270,7 @@ namespace vis
        }
        public static bool emailExists(string value)
        {
-           UzivatelTableGateway u = new UzivatelTableGateway();
+           UzivatelMapper u = new UzivatelMapper();
 
            List<Uzivatel> k = u.SelectAll();
 

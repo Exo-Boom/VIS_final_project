@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
-using vis.Gateway;
-using vis.TableGateway;
+using vis.Mapper;
+
 
 namespace vis
 {
@@ -93,7 +93,7 @@ namespace vis
                         if (Option == 1)
                         {
                             while (true){
-                                KnihaTableGateway kg = new KnihaTableGateway();
+                                KnihaMapper kg = new KnihaMapper();
                                 List<Kniha> k = kg.SelectAll();
                             
                                 Interface.printKnihy(k);
