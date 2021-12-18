@@ -60,9 +60,6 @@ namespace vis.Mapper
             {
                 return -1;
             }
-
-
-
             return new_id;
         }
            
