@@ -1,0 +1,12 @@
+C:\Users\Tomáš Gergišák\Desktop\vis-projekt\vis\DataCoreLogic\bin\Debug\net5.0\DataCoreLogic.deps.json
+C:\Users\Tomáš Gergišák\Desktop\vis-projekt\vis\DataCoreLogic\bin\Debug\net5.0\DataCoreLogic.dll
+C:\Users\Tomáš Gergišák\Desktop\vis-projekt\vis\DataCoreLogic\bin\Debug\net5.0\ref\DataCoreLogic.dll
+C:\Users\Tomáš Gergišák\Desktop\vis-projekt\vis\DataCoreLogic\bin\Debug\net5.0\DataCoreLogic.pdb
+C:\Users\Tomáš Gergišák\Desktop\vis-projekt\vis\DataCoreLogic\obj\Debug\net5.0\DataCoreLogic.csproj.AssemblyReference.cache
+C:\Users\Tomáš Gergišák\Desktop\vis-projekt\vis\DataCoreLogic\obj\Debug\net5.0\DataCoreLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tomáš Gergišák\Desktop\vis-projekt\vis\DataCoreLogic\obj\Debug\net5.0\DataCoreLogic.AssemblyInfoInputs.cache
+C:\Users\Tomáš Gergišák\Desktop\vis-projekt\vis\DataCoreLogic\obj\Debug\net5.0\DataCoreLogic.AssemblyInfo.cs
+C:\Users\Tomáš Gergišák\Desktop\vis-projekt\vis\DataCoreLogic\obj\Debug\net5.0\DataCoreLogic.csproj.CoreCompileInputs.cache
+C:\Users\Tomáš Gergišák\Desktop\vis-projekt\vis\DataCoreLogic\obj\Debug\net5.0\DataCoreLogic.dll
+C:\Users\Tomáš Gergišák\Desktop\vis-projekt\vis\DataCoreLogic\obj\Debug\net5.0\ref\DataCoreLogic.dll
+C:\Users\Tomáš Gergišák\Desktop\vis-projekt\vis\DataCoreLogic\obj\Debug\net5.0\DataCoreLogic.pdb

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
-using vis.Mapper;
+using DataCoreLogic.Data;
+using DataCoreLogic.Data.Logic;
+using DataCoreLogic.Data.Mapper;
 
 
 namespace vis
@@ -11,9 +13,6 @@ namespace vis
     {
         public static void Run()
         {
-
-
-
             Uzivatel u = new Uzivatel("Anonymous","","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous","Anonymous",3);
             Interface I = new Interface();
             UserDataActions uda = new UserDataActions();
