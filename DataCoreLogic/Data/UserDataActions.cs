@@ -1064,7 +1064,7 @@ namespace DataCoreLogic.Data
            string heslo;
            string telefon;
            string potvrzeni;
-           DateTime k = new DateTime(0,0,0,0,0,0);
+           DateTime k = new DateTime(2005,2,2,0,0,0);
            string datum;
            int den = 0;
            int rok = 0;
