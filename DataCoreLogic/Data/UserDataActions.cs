@@ -528,7 +528,7 @@ namespace DataCoreLogic.Data
 
             try
             {
-                if (list.Any())
+                if (list.Any() && knihy.Any())
                 {
                     status = om.Insert(DateTime.Now, u.Id, knihy);
                 }
