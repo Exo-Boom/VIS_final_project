@@ -1188,7 +1188,7 @@ namespace DataCoreLogic.Data
                    {   Console.WriteLine("Prosím zadejte den: ");
                        datum = Console.ReadLine(); 
                        den = int.Parse(datum);
-                       if (den <= 1)
+                       if (den <= 0)
                        {
                            den = 0;
                            
@@ -1197,7 +1197,7 @@ namespace DataCoreLogic.Data
                        Console.WriteLine("Prosím zadejte mesic: ");
                        datum = Console.ReadLine(); 
                        mesic = int.Parse(datum);
-                       if (mesic <= 1)
+                       if (mesic <= 0)
                        {
                            mesic = 0;
                            continue;
@@ -1205,7 +1205,7 @@ namespace DataCoreLogic.Data
                        Console.WriteLine("Prosím zadejte rok: ");
                        datum = Console.ReadLine(); 
                        rok = int.Parse(datum);
-                       if (rok <= 1)
+                       if (rok <= 0)
                        {
                            rok = 0;
                            continue;
