@@ -1191,6 +1191,7 @@ namespace DataCoreLogic.Data
                        if (den <= 1)
                        {
                            den = 0;
+                           
                            continue;
                        }
                        Console.WriteLine("Prosím zadejte mesic: ");
