@@ -1188,22 +1188,25 @@ namespace DataCoreLogic.Data
                    {   Console.WriteLine("Prosím zadejte den: ");
                        datum = Console.ReadLine(); 
                        den = int.Parse(datum);
-                       if (den < 0)
+                       if (den <= 1)
                        {
+                           den = 0;
                            continue;
                        }
                        Console.WriteLine("Prosím zadejte mesic: ");
                        datum = Console.ReadLine(); 
                        mesic = int.Parse(datum);
-                       if (mesic < 0)
+                       if (mesic <= 1)
                        {
+                           mesic = 0;
                            continue;
                        }
                        Console.WriteLine("Prosím zadejte rok: ");
                        datum = Console.ReadLine(); 
                        rok = int.Parse(datum);
-                       if (rok < 0)
+                       if (rok <= 1)
                        {
+                           rok = 0;
                            continue;
                        }
                        k = new DateTime(rok, mesic, den, 0, 0, 0);
