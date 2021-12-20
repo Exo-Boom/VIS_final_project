@@ -558,10 +558,13 @@ namespace DataCoreLogic.Data.Logic
                         
                         if (prijmeni == u.Prijmeni)
                         {
+                            string code = EmailAPIServiceStub.GenerateCode();
+                            string userCode;
+                            Console.WriteLine("Overovaci kod z mailu: " + code);
                             Console.WriteLine("Zadejte kód z ověřovacího emailu: ");
-                            Console.ReadLine();
+                            userCode = Console.ReadLine();
                             
-                            if (EmailAPIServiceStub.Authentication("0000"))
+                            if (EmailAPIServiceStub.Authentication(userCode,code))
                             {                           
                                 Console.WriteLine("Zadejte nové heslo: ");
                                 
