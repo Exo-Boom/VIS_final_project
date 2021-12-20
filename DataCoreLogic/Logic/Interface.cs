@@ -389,6 +389,7 @@ namespace DataCoreLogic.Data.Logic
 
         public static void MenuEditaceKniha(ref Kniha k)
         {
+            Console.Clear();
             
             Console.WriteLine("Editovaná kniha: \n");
             
