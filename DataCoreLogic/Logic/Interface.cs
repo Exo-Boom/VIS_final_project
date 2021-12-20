@@ -543,12 +543,21 @@ namespace DataCoreLogic.Data.Logic
                         
                         if (prijmeni == u.Prijmeni)
                         {
-                            Console.WriteLine("Zadejte nové heslo: ");
-
-                            s = Console.ReadLine();
+                            Console.WriteLine("Zadejte kód z ověřovacího emailu: ");
+                            Console.ReadLine();
                             
-                            map.Update(u.Id,u.Jmeno,u.Prijmeni,u.Email,u.Adr.Psc,u.Adr.Mesto,u.Adr.Zeme,u.Adr.Ulice,UserDataActions.hash(s),u.Telefon,u.role_id);
-                            return;
+                            if (EmailAPIServiceStub.Authentication("0000"))
+                            {                           
+                                Console.WriteLine("Zadejte nové heslo: ");
+                                
+                                s = Console.ReadLine();
+
+                                map.Update(u.Id, u.Jmeno, u.Prijmeni, u.Email, u.Adr.Psc, u.Adr.Mesto, u.Adr.Zeme,
+                                    u.Adr.Ulice, UserDataActions.hash(s), u.Telefon, u.role_id);
+                                return;
+                            }
+                            continue;
+
                         }
                         continue;
                         
