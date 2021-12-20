@@ -560,7 +560,9 @@ namespace DataCoreLogic.Data.Logic
                         {
                             string code = EmailAPIServiceStub.GenerateCode();
                             string userCode;
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Overovaci kod z mailu: " + code);
+                            Console.ForegroundColor = ConsoleColor.White;
                             Console.WriteLine("Zadejte kód z ověřovacího emailu: ");
                             userCode = Console.ReadLine();
                             
