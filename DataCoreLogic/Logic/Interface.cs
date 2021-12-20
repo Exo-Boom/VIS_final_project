@@ -170,11 +170,19 @@ namespace DataCoreLogic.Data.Logic
         {
             Console.Clear();
             Console.WriteLine("ID\tKniha\tISBN\t\tCena\t\tDostupny Počet");
+            int pocet = 0;
+            
             for (int i = 0; i < k.Count; i++)
             {
-                if(k[i].Cena != 0)
+                if (k[i].Cena != 0)
+                {
                     Console.WriteLine(k[i].Id+"\t"+k[i].Nazev+"\t"+k[i].Isbn+"\t"+k[i].Cena+"\t\t"+k[i].Pocet);
+                    pocet++;
+                }
+                    
             }
+
+            Console.WriteLine("Počet vypsaných knih: " + pocet);
         }
 
         public static void printObjednavkyUzivatele(Uzivatel u)
