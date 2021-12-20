@@ -1063,9 +1063,12 @@ namespace DataCoreLogic.Data
            string ulice;
            string heslo;
            string telefon;
-           string potvrzeni; 
-           
-           
+           string potvrzeni;
+           DateTime k = new DateTime(0,0,0,0,0,0);
+           string datum;
+           int den = 0;
+           int rok = 0;
+           int mesic = 0;
            bool ok = false;
            
            
@@ -1164,8 +1167,12 @@ namespace DataCoreLogic.Data
                    }
                    System.Threading.Thread.Sleep(3000);
                } while (heslo != potvrzeni);
+
+               bool validace = false;
+
                do
-               {                     
+               {
+                   
                    Console.Clear();
                    Console.WriteLine("Jmeno: " + jmeno);
                    Console.WriteLine("Prijmeni: " + prijmeni);
@@ -1175,7 +1182,55 @@ namespace DataCoreLogic.Data
                    Console.WriteLine("Země: " + zeme);
                    Console.WriteLine("Ulice: " + ulice);
                    Console.WriteLine("Telefon: " + telefon + "\n");
-         
+                   Console.WriteLine("Prosím zadejte datum narození: ");
+
+                   try
+                   {   Console.WriteLine("Prosím zadejte den: ");
+                       datum = Console.ReadLine(); 
+                       den = int.Parse(datum);
+                       if (den < 0)
+                       {
+                           continue;
+                       }
+                       Console.WriteLine("Prosím zadejte mesic: ");
+                       datum = Console.ReadLine(); 
+                       mesic = int.Parse(datum);
+                       if (mesic < 0)
+                       {
+                           continue;
+                       }
+                       Console.WriteLine("Prosím zadejte rok: ");
+                       datum = Console.ReadLine(); 
+                       rok = int.Parse(datum);
+                       if (rok < 0)
+                       {
+                           continue;
+                       }
+                       k = new DateTime(rok, mesic, den, 0, 0, 0);
+                       validace = true;
+                   }
+                   catch (FormatException)
+                   {
+                        continue;
+                   }
+                   
+               } while (validace != true);
+               
+               var today = DateTime.Today;
+                
+               do
+               {
+                   Console.Clear();
+                   Console.WriteLine("Jmeno: " + jmeno);
+                   Console.WriteLine("Prijmeni: " + prijmeni);
+                   Console.WriteLine("Email: " + email);
+                   Console.WriteLine("PSČ: " + psc);
+                   Console.WriteLine("Město: " + mesto);
+                   Console.WriteLine("Země: " + zeme);
+                   Console.WriteLine("Ulice: " + ulice);
+                   Console.WriteLine("Telefon: " + telefon + "\n");
+                   Console.WriteLine("Datum narození: " + k + "(" + (today.Year - k.Year) + "let)");
+                   
                    Console.WriteLine("Jsou všechny údaje správně? y/n" );
                    potvrzeni = Console.ReadLine();
 
