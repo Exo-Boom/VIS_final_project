@@ -446,14 +446,14 @@ namespace DataCoreLogic.Data
                                 Console.WriteLine("Zadej pocet objednavanych knih: ");
                                 pocet = int.Parse(Console.ReadLine());
 
-                                if (list[i].Pocet >= pocet && pocet >= 0)
+                                if (list[i].Pocet >= pocet && pocet > 0)
                                 {
                                     knihy.Add((list[i], pocet));
                                     break;
                                 }
                                 else
                                 {
-                                    Console.WriteLine("\n\nZadané knihy není na skladě dostatek kusů, prosím zkuste to po doplnění zboží.");
+                                    Console.WriteLine("\n\n Přidejte do objednávky prosím 0 a více dostuipného zboží");
                                     continue;
                                 }
 
