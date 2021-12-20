@@ -453,7 +453,7 @@ namespace DataCoreLogic.Data
                                 }
                                 else
                                 {
-                                    Console.WriteLine("\n\n Přidejte do objednávky prosím 0 a více dostuipného zboží");
+                                    Console.WriteLine("\n\n Přidejte do objednávky prosím 1 a více dostupného zboží");
                                     continue;
                                 }
 
