@@ -1232,8 +1232,8 @@ namespace DataCoreLogic.Data
                    Console.WriteLine("Město: " + mesto);
                    Console.WriteLine("Země: " + zeme);
                    Console.WriteLine("Ulice: " + ulice);
-                   Console.WriteLine("Telefon: " + telefon + "\n");
-                   Console.WriteLine("Datum narození: " + k.ToShortDateString() + "(" + (today.Year - k.Year) + "let)");
+                   Console.WriteLine("Telefon: " + telefon );
+                   Console.WriteLine("Datum narození: " + k.ToShortDateString() + " (" + (today.Year - k.Year) + "let)"+ "\n");
                    
                    Console.WriteLine("Jsou všechny údaje správně? y/n" );
                    potvrzeni = Console.ReadLine();

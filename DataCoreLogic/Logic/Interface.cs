@@ -166,9 +166,9 @@ namespace DataCoreLogic.Data.Logic
             if (a.role_id == 1)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write("5"); Console.WriteLine(" - Pro zobrazení všech uživatelů");
+                Console.Write("5"); Console.WriteLine(" - Pro zobrazení/úpravu všech uživatelů");
                 Console.Write("6"); Console.WriteLine(" - Pro zobrazení všech objednávek");
-                Console.Write("7"); Console.WriteLine(" - Pro zobrazení všech knih");
+                Console.Write("7"); Console.WriteLine(" - Pro zobrazení/úpravu všech knih");
                 Console.Write("8"); Console.WriteLine(" - Pro přidání nové knihy");
                 Console.Write("9"); Console.WriteLine(" - Pro odebrání knihy");
                 Console.Write("10"); Console.WriteLine(" - Pro odebrání uživatele");
