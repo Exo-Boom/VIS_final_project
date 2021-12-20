@@ -23,6 +23,20 @@ namespace DataCoreLogic.Data.Logic
             
         }
         
+        public void PassChangeSuccess()
+        {
+            string message = "Vaše heslo bylo úspěšně změněno.";
+            
+            Console.Clear();
+            Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(message);
+            Console.ForegroundColor = ConsoleColor.White;
+            System.Threading.Thread.Sleep(2000);
+            Console.Clear();
+            
+        }
+        
         public void RegisterSuccess()
         {
             string message = "Úspěšně jsme Vás zaregistrovali, nyní se prosím přihlaste";
@@ -554,6 +568,9 @@ namespace DataCoreLogic.Data.Logic
 
                                 map.Update(u.Id, u.Jmeno, u.Prijmeni, u.Email, u.Adr.Psc, u.Adr.Mesto, u.Adr.Zeme,
                                     u.Adr.Ulice, UserDataActions.hash(s), u.Telefon, u.role_id);
+
+                                PassChangeSuccess();
+                                
                                 return;
                             }
                             continue;
