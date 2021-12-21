@@ -931,7 +931,7 @@ namespace DataCoreLogic.Data
                         case 4:
                         {
                             Console.WriteLine("Zadej nový počet: ");
-                            dirty.Pocet = int.Parse(Console.ReadLine());
+                            dirty.Pocet += int.Parse(Console.ReadLine());
                             break;
                         }
                         case 5:

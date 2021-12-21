@@ -138,8 +138,10 @@ namespace DataCoreLogic.Data.Logic
             Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
             Console.WriteLine(message+"\n");
             message = "0 - Konec";
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.SetCursorPosition((Console.WindowWidth - message.Length) / 2, Console.CursorTop);
             Console.WriteLine(message);
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
         public void WrongInput()
