@@ -569,17 +569,32 @@ namespace DataCoreLogic.Data.Logic
                             userCode = Console.ReadLine();
                             
                             if (EmailAPIServiceStub.Authentication(userCode,code))
-                            {                           
-                                Console.WriteLine("Zadejte nové heslo: ");
+                            {
+                                while (true)
+                                {
+                                    
                                 
-                                s = Console.ReadLine();
+                                    Console.WriteLine("Zadejte nové heslo: ");
+                                    
+                                    s = Console.ReadLine();
 
-                                map.Update(u.Id, u.Jmeno, u.Prijmeni, u.Email, u.Adr.Psc, u.Adr.Mesto, u.Adr.Zeme,
-                                    u.Adr.Ulice, UserDataActions.hash(s), u.Telefon, u.role_id);
+                                    if (UserDataActions.hash(s) == u.Heslo)
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("Prosím zadejte jiné heslo než Vaše původní heslo... ");
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        Console.Clear();
+                                        continue;
+                                    }
+                                    
+                                    map.Update(u.Id, u.Jmeno, u.Prijmeni, u.Email, u.Adr.Psc, u.Adr.Mesto, u.Adr.Zeme,
+                                        u.Adr.Ulice, UserDataActions.hash(s), u.Telefon, u.role_id);
 
-                                PassChangeSuccess();
+                                    PassChangeSuccess();
+                                    
+                                    return;
                                 
-                                return;
+                                }
                             }
                             continue;
 
