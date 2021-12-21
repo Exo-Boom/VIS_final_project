@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WeDM/mNJk5EyuHTl5LH+lmb/B/DrysG2jxm2Z6VzYWTEfmiAkgK2maPOhm9MjFYLjyzb6J4Uxlp+LRv6C8m3fg==",
+  "dgSpecHash": "4erOJaD39pe8BAElNSi9bQifLHV45me34PK23NTGtYAn6pBiUrNAESdH98oJKmcCGCUQibqQvvUwlio5Ay6Gzg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Tomáš Gergišák\\Desktop\\vis-projekt\\vis\\DataCoreLogic\\DataCoreLogic.csproj",
+  "projectFilePath": "C:\\Users\\Tomáš Gergišák\\Desktop\\projektUtery\\DataCoreLogic\\DataCoreLogic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tomáš Gergišák\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Tomáš Gergišák\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

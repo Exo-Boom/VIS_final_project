@@ -583,6 +583,7 @@ namespace DataCoreLogic.Data.Logic
                                         Console.ForegroundColor = ConsoleColor.Red;
                                         Console.WriteLine("Prosím zadejte jiné heslo než Vaše původní heslo... ");
                                         Console.ForegroundColor = ConsoleColor.White;
+                                        System.Threading.Thread.Sleep(4000);
                                         Console.Clear();
                                         continue;
                                     }
